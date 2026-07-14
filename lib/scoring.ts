@@ -17,12 +17,17 @@ export function countTermHits(text: string, terms: string[]) {
     }
 
     const escaped = cleanTerm.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    const matches = normalised.match(new RegExp(`(^|\\s)${escaped}(?=\\s|$)`, "g"));
+    const matches = normalised.match(
+      new RegExp(`(^|\\s)${escaped}(?=\\s|$)`, "g"),
+    );
     return count + (matches?.length ?? 0);
   }, 0);
 }
 
-export function evidenceScoreFromHits(primaryHits: number, relatedHits: number): {
+export function evidenceScoreFromHits(
+  primaryHits: number,
+  relatedHits: number,
+): {
   strength: EvidenceStrength;
   score: number;
 } {

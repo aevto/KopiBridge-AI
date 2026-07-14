@@ -2,373 +2,477 @@
 
 import {
   AlertTriangle,
+  ArrowUpRight,
   BadgeCheck,
   CalendarDays,
   CheckCircle2,
   Download,
   FileCheck2,
   ListChecks,
+  MessageSquareText,
+  ShieldAlert,
   Target,
-  TrendingUp
+  TimerReset,
 } from "lucide-react";
 import { EvidenceMap } from "@/components/EvidenceMap";
 import { ScoreBreakdown } from "@/components/ScoreBreakdown";
-import type { AnalysisResult, GapItem, GapSeverity, PriorityAction, ResumeRecommendation } from "@/types/analysis";
-
-interface ResultsDashboardProps {
-  result: AnalysisResult;
-}
+import type {
+  AnalysisResult,
+  GapItem,
+  GapSeverity,
+  RecommendationStatus,
+} from "@/types/analysis";
 
 const severityStyles: Record<GapSeverity, string> = {
   high: "border-clay-100 bg-clay-50 text-clay-700",
   medium: "border-ambergap-100 bg-ambergap-50 text-ambergap-600",
-  low: "border-sage-100 bg-sage-50 text-sage-700"
+  low: "border-sage-100 bg-sage-50 text-sage-700",
 };
 
-const severityAccent: Record<GapSeverity, string> = {
-  high: "bg-clay-600",
-  medium: "bg-ambergap-500",
-  low: "bg-sage-600"
-};
-
-const recommendationStyles: Record<ResumeRecommendation["status"], string> = {
+const claimStyles: Record<RecommendationStatus, string> = {
   safe: "border-sage-100 bg-sage-50 text-sage-700",
-  "needs-proof": "border-ambergap-100 bg-ambergap-50 text-ambergap-600"
+  reframe: "border-ambergap-100 bg-ambergap-50 text-ambergap-600",
+  "needs-proof": "border-clay-100 bg-clay-50 text-clay-700",
 };
 
-const recommendationLabels: Record<ResumeRecommendation["status"], string> = {
-  safe: "Safe to add",
-  "needs-proof": "Needs proof first"
+const claimLabels: Record<RecommendationStatus, string> = {
+  safe: "Safe to add now",
+  reframe: "Reframe carefully",
+  "needs-proof": "Needs proof first",
 };
 
-export function ResultsDashboard({ result }: ResultsDashboardProps) {
-  const circumference = 2 * Math.PI * 44;
-  const stroke = circumference - (result.overallScore / 100) * circumference;
-  const reportDate = new Intl.DateTimeFormat("en", {
+export function ResultsDashboard({
+  result,
+  targetRole,
+  company,
+}: {
+  result: AnalysisResult;
+  targetRole?: string;
+  company?: string | null;
+}) {
+  const reportDate = new Intl.DateTimeFormat("en-SG", {
     dateStyle: "medium",
-    timeStyle: "short"
+    timeStyle: "short",
   }).format(new Date(result.generatedAt));
-  const topGaps = result.weakRequirements.slice(0, 3);
-  const topActions = result.priorityActions.slice(0, 3);
-
-  function handlePrint() {
-    window.print();
-  }
 
   return (
-    <section className="printable-report space-y-5 rounded-lg border border-espresso-100 bg-white p-5 shadow-soft sm:p-6">
-      <div className="print-only mb-5 border-b border-neutral-300 pb-4">
-        <h1 className="text-2xl font-bold text-neutral-950">KopiBridge AI</h1>
-        <p className="mt-1 text-sm text-neutral-700">Resume-to-AI-tech-role gap analysis report</p>
-        <p className="mt-1 text-sm text-neutral-700">Report date: {reportDate}</p>
-      </div>
+    <section className="printable-report space-y-6">
+      <header className="print-only border-b border-neutral-300 pb-4">
+        <h1 className="text-2xl font-bold">KopiBridge AI</h1>
+        <p className="mt-1 text-sm">Private resume-to-role alignment report</p>
+        <p className="mt-1 text-sm">
+          {targetRole || "Target role"}
+          {company ? ` | ${company}` : ""} | {reportDate}
+        </p>
+      </header>
 
-      <div className="no-print flex flex-col gap-4 border-b border-espresso-100 pb-5 md:flex-row md:items-start md:justify-between">
+      <div className="no-print flex flex-col gap-4 border-b border-espresso-100 pb-5 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <p className="text-xs font-bold uppercase text-espresso-500">KopiBridge AI Report</p>
-          <h2 className="mt-2 text-2xl font-semibold leading-tight text-espresso-900 sm:text-3xl">Your AI role readiness snapshot</h2>
-          <p className="mt-2 max-w-2xl text-sm leading-6 text-espresso-500">Generated {reportDate}. Review the summary, then use the roadmap to build proof.</p>
+          <p className="text-xs font-bold uppercase text-sage-700">
+            Evidence-led career report
+          </p>
+          <h2 className="mt-2 text-2xl font-semibold text-espresso-900">
+            Your role-alignment decision brief
+          </h2>
+          <p className="mt-2 text-sm text-espresso-500">
+            Generated {reportDate}. Verify every recommendation before changing
+            your resume.
+          </p>
         </div>
         <button
           type="button"
           data-testid="save-report"
-          onClick={handlePrint}
-          className="inline-flex items-center justify-center gap-2 rounded-md bg-sage-700 px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-sage-600 hover:shadow-card focus:outline-none focus:ring-2 focus:ring-sage-200"
+          onClick={() => window.print()}
+          className="inline-flex items-center justify-center gap-2 rounded-md bg-espresso-900 px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-espresso-700"
         >
-          <Download className="h-4 w-4" aria-hidden="true" />
-          Save Report
+          <Download className="h-4 w-4" />
+          Save report
         </button>
       </div>
 
-      <ExecutiveSummary result={result} circumference={circumference} stroke={stroke} />
-
-      <div className="print-stack grid gap-5 lg:grid-cols-2">
-        <TopGapsCard gaps={topGaps} />
-        <TopActionsCard actions={topActions} />
-      </div>
-
-      <RoadmapPanel result={result} />
-
-      <div className="space-y-6">
-        <EvidenceMap items={result.evidenceMap} />
-        <ScoreBreakdown items={result.scoreBreakdown} />
-      </div>
-
-      <div className="space-y-5">
-        <div className="print-stack grid gap-5 2xl:grid-cols-2">
-          <DetailPanel
-            icon={<CheckCircle2 className="h-5 w-5" aria-hidden="true" />}
-            title={`Matched requirements (${result.matchedRequirements.length})`}
-          >
-            <ul className="space-y-3">
-              {result.matchedRequirements.slice(0, 8).map((item) => (
-                <li key={item.id} className="rounded-md border border-espresso-100 bg-espresso-50/45 p-3 text-sm leading-6 text-espresso-700">
-                  <div className="flex items-start gap-3">
-                    <CheckCircle2 className="mt-0.5 h-4 w-4 flex-none text-sage-600" aria-hidden="true" />
-                    <span>
-                      <strong className="font-semibold text-espresso-900">{item.label}</strong>
-                      <span className="mt-1 block text-xs leading-5 text-espresso-500">{item.evidence}</span>
-                    </span>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </DetailPanel>
-
-          <DetailPanel
-            icon={<AlertTriangle className="h-5 w-5" aria-hidden="true" />}
-            title={`Missing or weak requirements (${result.weakRequirements.length})`}
-          >
-            <ul className="space-y-3">
-              {result.weakRequirements.slice(0, 8).map((item) => (
-                <li key={item.id} className="rounded-md border border-espresso-100 bg-espresso-50/45 p-3 text-sm leading-6 text-espresso-700">
-                  <div className="flex items-start gap-3">
-                    <AlertTriangle className="mt-0.5 h-4 w-4 flex-none text-ambergap-600" aria-hidden="true" />
-                    <span>
-                      <strong className="font-semibold text-espresso-900">{item.label}</strong>
-                      <span className="mt-1 block text-xs leading-5 text-espresso-500">{item.reason}</span>
-                    </span>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </DetailPanel>
-        </div>
-
-        <RecommendationsPanel recommendations={result.resumeImprovements} />
-      </div>
-    </section>
-  );
-}
-
-function ExecutiveSummary({
-  result,
-  circumference,
-  stroke
-}: {
-  result: AnalysisResult;
-  circumference: number;
-  stroke: number;
-}) {
-  return (
-    <section className="print-card print-avoid overflow-hidden rounded-lg border border-espresso-100 bg-gradient-to-br from-white via-white to-espresso-50 shadow-card">
-      <div className="grid gap-0 lg:grid-cols-[0.82fr_1.18fr]">
-        <div className="border-b border-espresso-100 p-5 lg:border-b-0 lg:border-r">
-          <div className="flex flex-col gap-5 sm:flex-row sm:items-center lg:flex-col lg:items-start">
-            <div className="relative h-32 w-32 flex-none">
-              <svg viewBox="0 0 104 104" className="h-full w-full -rotate-90" aria-hidden="true">
-                <circle cx="52" cy="52" r="44" fill="none" stroke="#eadac8" strokeWidth="10" />
-                <circle
-                  cx="52"
-                  cy="52"
-                  r="44"
-                  fill="none"
-                  stroke="#237551"
-                  strokeLinecap="round"
-                  strokeWidth="10"
-                  strokeDasharray={circumference}
-                  strokeDashoffset={stroke}
-                />
-              </svg>
-              <div className="absolute inset-0 flex flex-col items-center justify-center">
-                <span className="text-4xl font-semibold text-espresso-900">{result.overallScore}%</span>
-                <span className="mt-1 text-[11px] font-bold uppercase text-espresso-500">Match</span>
-              </div>
+      <section className="print-card overflow-hidden rounded-lg border border-espresso-100 bg-white shadow-soft">
+        <div className="grid lg:grid-cols-[0.8fr_1.2fr]">
+          <div className="bg-espresso-900 p-7 text-white sm:p-8">
+            <p className="text-xs font-bold uppercase text-espresso-200">
+              Overall match estimate
+            </p>
+            <div className="mt-5 flex items-end gap-2">
+              <span className="text-7xl font-semibold leading-none">
+                {result.overallScore}
+              </span>
+              <span className="pb-1 text-2xl text-espresso-200">%</span>
             </div>
-            <div className="min-w-0">
-              <p className="text-xs font-bold uppercase text-espresso-500">Overall Match Score</p>
-              <h3 className="mt-2 text-2xl font-semibold leading-tight text-espresso-900">{result.scoreLabel}</h3>
-              <p className="mt-2 text-sm leading-6 text-espresso-600">
-                Based on matched requirements, evidence strength, and weighted role categories.
+            <p className="mt-4 text-xl font-semibold">{result.scoreLabel}</p>
+            <p className="mt-3 text-xs leading-5 text-espresso-200">
+              {result.scoreDisclaimer}
+            </p>
+          </div>
+          <div className="p-6 sm:p-8">
+            <div className="flex items-center gap-3 text-sage-700">
+              <Target className="h-5 w-5" />
+              <p className="text-xs font-bold uppercase">Role fit summary</p>
+            </div>
+            <p className="mt-4 text-base leading-7 text-espresso-700">
+              {result.roleFitSummary}
+            </p>
+            <div className="mt-6 border-l-2 border-sage-600 pl-4">
+              <p className="text-xs font-bold uppercase text-espresso-400">
+                Recommendation
+              </p>
+              <p className="mt-1 text-xl font-semibold text-espresso-900">
+                {result.finalRecommendation.decision}
+              </p>
+              <p className="mt-2 text-sm leading-6 text-espresso-500">
+                {result.finalRecommendation.explanation}
               </p>
             </div>
           </div>
         </div>
+      </section>
 
-        <div className="p-5">
-          <SectionHeader icon={<Target className="h-5 w-5" aria-hidden="true" />} tone="espresso" title="Role Fit Summary" />
-          <p className="mt-4 text-sm leading-7 text-espresso-600">{result.roleFitSummary}</p>
-          <div className="mt-4 flex flex-wrap gap-2">
-            {result.scoreBreakdown.slice(0, 5).map((item) => (
-              <span key={item.id} className="inline-flex items-center gap-2 rounded-full border border-espresso-100 bg-white px-3 py-1.5 text-xs font-semibold text-espresso-700 shadow-sm">
-                <BadgeCheck className="h-3.5 w-3.5 text-sage-600" aria-hidden="true" />
-                {item.label}: {item.score}%
-              </span>
+      <section className="print-card rounded-lg border border-espresso-100 bg-white p-5 shadow-card sm:p-6">
+        <SectionTitle
+          icon={<ShieldAlert />}
+          title="Claim safety at a glance"
+          description="Use these labels as a guardrail against exaggeration."
+        />
+        <div className="mt-5 grid gap-3 md:grid-cols-3">
+          <ClaimGuide
+            status="safe"
+            text="Directly supported by the resume text. Keep the wording factual."
+          />
+          <ClaimGuide
+            status="reframe"
+            text="The experience appears present, but the wording or context needs care."
+          />
+          <ClaimGuide
+            status="needs-proof"
+            text="Do not add this claim until you can show working, defensible evidence."
+          />
+        </div>
+      </section>
+
+      <div className="print-stack grid gap-6 lg:grid-cols-2">
+        <section className="print-card rounded-lg border border-espresso-100 bg-white p-5 shadow-card sm:p-6">
+          <SectionTitle
+            icon={<BadgeCheck />}
+            title="Existing strengths"
+            description="The strongest signals already found in your resume."
+          />
+          <div className="mt-5 space-y-4">
+            {result.existingStrengths.slice(0, 4).map((strength) => (
+              <article
+                key={strength.title}
+                className="border-l-2 border-sage-500 pl-4"
+              >
+                <h4 className="font-semibold text-espresso-900">
+                  {strength.title}
+                </h4>
+                <p className="mt-1 text-sm leading-6 text-espresso-600">
+                  &ldquo;{strength.evidence}&rdquo;
+                </p>
+                <p className="mt-1 text-xs leading-5 text-espresso-400">
+                  {strength.whyItMatters}
+                </p>
+              </article>
             ))}
           </div>
-        </div>
+        </section>
+        <section className="print-card rounded-lg border border-espresso-100 bg-white p-5 shadow-card sm:p-6">
+          <SectionTitle
+            icon={<AlertTriangle />}
+            title="Critical gaps"
+            description="The three issues most likely to weaken this application."
+          />
+          <div className="mt-5 space-y-4">
+            {result.weakRequirements.slice(0, 3).map((gap, index) => (
+              <GapRow key={gap.id} gap={gap} number={index + 1} />
+            ))}
+          </div>
+        </section>
       </div>
-    </section>
-  );
-}
 
-function TopGapsCard({ gaps }: { gaps: GapItem[] }) {
-  return (
-    <section className="print-card print-avoid rounded-lg border border-espresso-100 bg-white p-5 shadow-card sm:p-6">
-      <SectionHeader
-        icon={<AlertTriangle className="h-5 w-5" aria-hidden="true" />}
-        tone="amber"
-        title="Top 3 Priority Gaps"
-        description="The highest-impact missing or weak signals to fix first."
-      />
-      <ol className="mt-5 space-y-3">
-        {gaps.map((gap, index) => (
-          <li key={gap.id} className="relative overflow-hidden rounded-md border border-espresso-100 bg-espresso-50/35 p-4">
-            <span className={`absolute inset-y-0 left-0 w-1 ${severityAccent[gap.severity]}`} aria-hidden="true" />
-            <div className="flex items-start justify-between gap-3 pl-2">
-              <div>
-                <p className="text-xs font-bold uppercase text-espresso-400">Priority {index + 1}</p>
-                <h4 className="mt-1 text-base font-semibold leading-6 text-espresso-900">{gap.label}</h4>
-              </div>
-              <span className={`rounded-full border px-2.5 py-1 text-[11px] font-bold capitalize ${severityStyles[gap.severity]}`}>
-                {gap.severity}
-              </span>
-            </div>
-            <p className="mt-3 pl-2 text-sm leading-6 text-espresso-600">{gap.reason}</p>
-            <div className="mt-3 rounded-md border border-espresso-100 bg-white px-3 py-2.5 text-sm leading-6 text-espresso-700">
-              <span className="font-semibold text-espresso-900">Proof step: </span>
-              {gap.action}
-            </div>
-          </li>
-        ))}
-      </ol>
-    </section>
-  );
-}
+      <section className="print-card rounded-lg border border-espresso-100 bg-white p-5 shadow-card sm:p-6">
+        <SectionTitle
+          icon={<TimerReset />}
+          title="Action roadmap"
+          description="Start with tasks that create proof, then earn stronger resume wording."
+        />
+        <div className="print-roadmap-grid mt-5 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+          {result.actionRoadmap.map((group) => (
+            <article
+              key={group.period}
+              className="border-t-2 border-espresso-800 bg-espresso-50/45 p-4"
+            >
+              <p className="text-xs font-bold uppercase text-sage-700">
+                {group.period}
+              </p>
+              <ul className="mt-4 space-y-3">
+                {group.tasks.map((task, index) => (
+                  <li
+                    key={`${group.period}-${index}`}
+                    className="flex gap-2 text-sm leading-6 text-espresso-600"
+                  >
+                    <CheckCircle2 className="mt-1 h-4 w-4 flex-none text-sage-600" />
+                    {task}
+                  </li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </section>
 
-function TopActionsCard({ actions }: { actions: PriorityAction[] }) {
-  return (
-    <section className="print-card print-avoid rounded-lg border border-espresso-100 bg-white p-5 shadow-card sm:p-6">
-      <SectionHeader
-        icon={<TrendingUp className="h-5 w-5" aria-hidden="true" />}
-        tone="sage"
-        title="Top 3 Recommended Actions"
-        description="Short proof-building moves that can improve the next version of the resume."
-      />
-      <ol className="mt-5 space-y-3">
-        {actions.map((action, index) => {
-          const needsProof = /needs proof first/i.test(`${action.title} ${action.detail}`);
-          const detail = action.detail.replace(/^Needs proof first:\s*/i, "");
-
-          return (
-            <li key={`${action.title}-${index}`} className="rounded-md border border-espresso-100 bg-espresso-50/35 p-4">
-              <div className="flex gap-3">
-                <span className="flex h-8 w-8 flex-none items-center justify-center rounded-full bg-espresso-800 text-sm font-semibold text-white">
-                  {index + 1}
+      <section className="print-card rounded-lg border border-espresso-100 bg-white p-5 shadow-card sm:p-6">
+        <SectionTitle
+          icon={<CalendarDays />}
+          title="30-day proof plan"
+          description="A practical four-week sequence tied to the highest-priority gaps."
+        />
+        <div className="print-roadmap-grid mt-5 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+          {result.roadmap.map((week) => (
+            <article
+              key={week.week}
+              className="rounded-md border border-espresso-100 p-4"
+            >
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-bold uppercase text-sage-700">
+                  {week.week}
                 </span>
-                <div className="min-w-0">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <h4 className="text-base font-semibold leading-6 text-espresso-900">{action.title}</h4>
-                    {needsProof ? (
-                      <span className="rounded-full border border-ambergap-100 bg-ambergap-50 px-2 py-0.5 text-[11px] font-bold text-ambergap-600">
-                        Needs proof first
-                      </span>
-                    ) : null}
-                  </div>
-                  <p className="mt-2 text-sm leading-6 text-espresso-600">{detail}</p>
-                  <p className="mt-2 text-xs font-semibold uppercase text-espresso-400">{action.timeframe}</p>
-                </div>
+                <ListChecks className="h-4 w-4 text-espresso-300" />
               </div>
-            </li>
-          );
-        })}
-      </ol>
-    </section>
-  );
-}
+              <h4 className="mt-3 font-semibold leading-6 text-espresso-900">
+                {week.title}
+              </h4>
+              <ul className="mt-4 space-y-3">
+                {week.tasks.slice(0, 3).map((task, index) => (
+                  <li
+                    key={`${week.week}-${index}`}
+                    className="text-sm leading-6 text-espresso-600"
+                  >
+                    {task}
+                  </li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </section>
 
-function RoadmapPanel({ result }: { result: AnalysisResult }) {
-  return (
-    <section className="print-card print-avoid rounded-lg border border-espresso-100 bg-white p-5 shadow-card sm:p-6">
-      <SectionHeader
-        icon={<CalendarDays className="h-5 w-5" aria-hidden="true" />}
-        tone="espresso"
-        title="30-Day Roadmap"
-        description="Four focused weeks, generated from the strongest gaps in this comparison."
-      />
-      <div className="print-stack mt-5 grid gap-4 sm:grid-cols-2 2xl:grid-cols-4">
-        {result.roadmap.map((week) => (
-          <article key={week.week} className="rounded-md border border-espresso-100 bg-espresso-50/35 p-4">
-            <div className="flex items-start justify-between gap-3">
-              <span className="rounded-md bg-white px-2.5 py-1 text-xs font-bold text-sage-700 shadow-sm">{week.week}</span>
-              <ListChecks className="h-4 w-4 flex-none text-espresso-400" aria-hidden="true" />
-            </div>
-            <h4 className="mt-4 min-h-10 text-base font-semibold leading-6 text-espresso-900">{week.title}</h4>
-            <ul className="mt-4 space-y-3">
-              {week.tasks.slice(0, 3).map((task) => (
-                <li key={task} className="flex gap-2.5 text-sm leading-6 text-espresso-600">
-                  <CheckCircle2 className="mt-1 h-4 w-4 flex-none text-sage-600" aria-hidden="true" />
-                  <span>{task}</span>
+      <EvidenceMap items={result.evidenceMap} />
+
+      <section className="print-card rounded-lg border border-espresso-100 bg-white p-5 shadow-card sm:p-6">
+        <SectionTitle
+          icon={<FileCheck2 />}
+          title="Resume wording workshop"
+          description="Conservative rewrites that expose missing evidence instead of inventing it."
+        />
+        <div className="mt-5 space-y-5">
+          {result.bulletRewrites.map((rewrite, index) => (
+            <article
+              key={`${rewrite.original}-${index}`}
+              className="grid gap-4 border-t border-espresso-100 pt-5 md:grid-cols-2"
+            >
+              <div>
+                <p className="text-xs font-bold uppercase text-espresso-400">
+                  Current wording
+                </p>
+                <p className="mt-2 text-sm leading-6 text-espresso-600">
+                  {rewrite.original}
+                </p>
+              </div>
+              <div>
+                <span
+                  className={`inline-flex rounded-md border px-2 py-1 text-[11px] font-bold ${claimStyles[rewrite.status]}`}
+                >
+                  {claimLabels[rewrite.status]}
+                </span>
+                <p className="mt-2 text-sm font-medium leading-6 text-espresso-800">
+                  {rewrite.suggested}
+                </p>
+                <p className="mt-2 text-xs leading-5 text-espresso-400">
+                  {rewrite.whyStronger}
+                </p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="print-card rounded-lg border border-espresso-100 bg-white p-5 shadow-card sm:p-6">
+        <SectionTitle
+          icon={<MessageSquareText />}
+          title="Interview preparation"
+          description="Prepare evidence for strengths and honest language for gaps."
+        />
+        <div className="print-stack mt-5 grid gap-6 lg:grid-cols-2">
+          <div>
+            <h4 className="text-sm font-semibold text-espresso-900">
+              Five likely questions
+            </h4>
+            <ol className="mt-3 space-y-3">
+              {result.interviewPreparation.questions.map((question, index) => (
+                <li
+                  key={question}
+                  className="flex gap-3 text-sm leading-6 text-espresso-600"
+                >
+                  <span className="font-semibold text-sage-700">
+                    {index + 1}.
+                  </span>
+                  {question}
                 </li>
               ))}
-            </ul>
-          </article>
-        ))}
-      </div>
+            </ol>
+          </div>
+          <div className="space-y-5">
+            <InterviewList
+              title="Evidence to prepare"
+              items={result.interviewPreparation.evidenceToPrepare}
+              tone="sage"
+            />
+            <InterviewList
+              title="Weaknesses to address honestly"
+              items={result.interviewPreparation.honestWeaknesses}
+              tone="amber"
+            />
+            <InterviewList
+              title="Do not bluff about"
+              items={result.interviewPreparation.doNotBluff}
+              tone="clay"
+            />
+          </div>
+        </div>
+      </section>
+
+      <ScoreBreakdown items={result.scoreBreakdown} />
+
+      <section className="print-card rounded-lg border border-espresso-100 bg-espresso-900 p-6 text-white shadow-card sm:p-8">
+        <p className="text-xs font-bold uppercase text-espresso-200">
+          Final recommendation
+        </p>
+        <h3 className="mt-3 text-3xl font-semibold">
+          {result.finalRecommendation.decision}
+        </h3>
+        <p className="mt-4 max-w-3xl text-sm leading-7 text-espresso-100">
+          {result.finalRecommendation.explanation}
+        </p>
+        <p className="mt-5 flex items-start gap-2 text-sm font-semibold">
+          <ArrowUpRight className="mt-0.5 h-4 w-4 flex-none text-sage-500" />
+          {result.finalRecommendation.nextStep}
+        </p>
+      </section>
     </section>
   );
 }
 
-function RecommendationsPanel({ recommendations }: { recommendations: ResumeRecommendation[] }) {
-  return (
-    <DetailPanel icon={<FileCheck2 className="h-5 w-5" aria-hidden="true" />} title="Recommended resume improvements">
-      <ul className="grid gap-3 md:grid-cols-2">
-        {recommendations.map((item) => (
-          <li key={item.text} className="rounded-md border border-espresso-100 bg-espresso-50/40 p-4 text-sm leading-6 text-espresso-700">
-            <span className={`mb-2 inline-flex rounded-full border px-2.5 py-1 text-[11px] font-bold ${recommendationStyles[item.status]}`}>
-              {recommendationLabels[item.status]}
-            </span>
-            <span className="block">{item.text}</span>
-          </li>
-        ))}
-      </ul>
-    </DetailPanel>
-  );
-}
-
-function DetailPanel({
-  icon,
-  title,
-  children
-}: {
-  icon: React.ReactNode;
-  title: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <section className="print-card print-avoid rounded-lg border border-espresso-100 bg-white p-5 shadow-card sm:p-6">
-      <SectionHeader icon={icon} tone="espresso" title={title} />
-      <div className="mt-5">{children}</div>
-    </section>
-  );
-}
-
-function SectionHeader({
+function SectionTitle({
   icon,
   title,
   description,
-  tone
 }: {
   icon: React.ReactNode;
   title: string;
-  description?: string;
-  tone: "espresso" | "sage" | "amber";
+  description: string;
 }) {
-  const toneClass = {
-    espresso: "bg-espresso-50 text-espresso-700",
-    sage: "bg-sage-50 text-sage-700",
-    amber: "bg-ambergap-50 text-ambergap-600"
-  }[tone];
-
   return (
     <div className="flex items-start gap-3">
-      <span className={`flex h-10 w-10 flex-none items-center justify-center rounded-md ${toneClass}`}>
+      <span className="flex h-10 w-10 flex-none items-center justify-center rounded-md bg-espresso-50 text-espresso-700 [&>svg]:h-5 [&>svg]:w-5">
         {icon}
       </span>
-      <div className="min-w-0">
+      <div>
         <h3 className="text-lg font-semibold text-espresso-900">{title}</h3>
-        {description ? <p className="mt-1 text-sm leading-6 text-espresso-500">{description}</p> : null}
+        <p className="mt-1 text-sm leading-6 text-espresso-500">
+          {description}
+        </p>
       </div>
+    </div>
+  );
+}
+
+function ClaimGuide({
+  status,
+  text,
+}: {
+  status: RecommendationStatus;
+  text: string;
+}) {
+  return (
+    <div
+      className={`border-l-2 px-4 py-3 ${status === "safe" ? "border-sage-600 bg-sage-50" : status === "reframe" ? "border-ambergap-500 bg-ambergap-50" : "border-clay-600 bg-clay-50"}`}
+    >
+      <p className="text-sm font-semibold text-espresso-900">
+        {claimLabels[status]}
+      </p>
+      <p className="mt-1 text-xs leading-5 text-espresso-500">{text}</p>
+    </div>
+  );
+}
+
+function GapRow({ gap, number }: { gap: GapItem; number: number }) {
+  return (
+    <article className="border-t border-espresso-100 pt-4 first:border-0 first:pt-0">
+      <div className="flex items-start justify-between gap-3">
+        <div className="flex gap-3">
+          <span className="flex h-7 w-7 flex-none items-center justify-center rounded-md bg-espresso-900 text-xs font-semibold text-white">
+            {number}
+          </span>
+          <div>
+            <h4 className="font-semibold text-espresso-900">{gap.label}</h4>
+            <p className="mt-1 text-xs capitalize text-espresso-400">
+              {gap.gapType} | {gap.estimatedEffort}
+            </p>
+          </div>
+        </div>
+        <span
+          className={`rounded-md border px-2 py-1 text-[11px] font-bold capitalize ${severityStyles[gap.severity]}`}
+        >
+          {gap.severity}
+        </span>
+      </div>
+      <p className="mt-3 text-sm leading-6 text-espresso-600">
+        {gap.whyItMatters}
+      </p>
+      <p className="mt-2 text-sm font-medium leading-6 text-espresso-800">
+        Proof step: {gap.action}
+      </p>
+    </article>
+  );
+}
+
+function InterviewList({
+  title,
+  items,
+  tone,
+}: {
+  title: string;
+  items: string[];
+  tone: "sage" | "amber" | "clay";
+}) {
+  const toneClass =
+    tone === "sage"
+      ? "border-sage-500"
+      : tone === "amber"
+        ? "border-ambergap-500"
+        : "border-clay-600";
+  return (
+    <div className={`border-l-2 pl-4 ${toneClass}`}>
+      <h4 className="text-sm font-semibold text-espresso-900">{title}</h4>
+      {items.length ? (
+        <ul className="mt-2 space-y-2">
+          {items.map((item, index) => (
+            <li
+              key={`${title}-${index}`}
+              className="text-sm leading-6 text-espresso-500"
+            >
+              {item}
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p className="mt-2 text-sm text-espresso-400">
+          No high-risk items detected.
+        </p>
+      )}
     </div>
   );
 }

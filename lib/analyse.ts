@@ -1,22 +1,31 @@
-import { CATEGORY_WEIGHTS, SKILL_SIGNALS, type SkillSignal } from "@/lib/skills";
+import {
+  CATEGORY_WEIGHTS,
+  SKILL_SIGNALS,
+  type SkillSignal,
+} from "@/lib/skills";
 import {
   clampScore,
   countTermHits,
   evidenceScoreFromHits,
   normaliseText,
   scoreLabel,
-  severityFromStrength
+  severityFromStrength,
 } from "@/lib/scoring";
 import type {
+  ActionRoadmapGroup,
   AnalysisResult,
+  BulletRewrite,
   EvidenceMapItem,
+  ExistingStrength,
+  FinalRecommendation,
   GapItem,
+  InterviewPreparation,
   PriorityAction,
   RequirementCategory,
   RequirementMatch,
   ResumeRecommendation,
   RoadmapWeek,
-  ScoreBreakdownItem
+  ScoreBreakdownItem,
 } from "@/types/analysis";
 
 const DEFAULT_SIGNAL_IDS = [
@@ -28,7 +37,7 @@ const DEFAULT_SIGNAL_IDS = [
   "react",
   "deployment",
   "communication",
-  "degree"
+  "degree",
 ];
 
 const GAP_PROOF_GUIDES: Record<
@@ -41,132 +50,216 @@ const GAP_PROOF_GUIDES: Record<
   }
 > = {
   python: {
-    proofAction: "Build one focused Python feature and show the library, input data, output, and result.",
-    week2: "Extend one existing project with a Python analysis or automation feature and commit the code publicly.",
-    week3: "Add a README section that explains the Python libraries used, sample input, expected output, and one limitation.",
-    resumeLine: "Only add stronger Python claims after the project shows real code, libraries, and an outcome."
+    proofAction:
+      "Build one focused Python feature and show the library, input data, output, and result.",
+    week2:
+      "Extend one existing project with a Python analysis or automation feature and commit the code publicly.",
+    week3:
+      "Add a README section that explains the Python libraries used, sample input, expected output, and one limitation.",
+    resumeLine:
+      "Only add stronger Python claims after the project shows real code, libraries, and an outcome.",
   },
   "javascript-typescript": {
-    proofAction: "Ship one TypeScript or JavaScript feature with clear user flow and project impact.",
-    week2: "Add a small TypeScript feature to your strongest web project, such as validation, filtering, or a saved result state.",
-    week3: "Document the component, state, and error-handling decisions in the project README.",
-    resumeLine: "Only strengthen JavaScript/TypeScript wording after the feature is working and linked."
+    proofAction:
+      "Ship one TypeScript or JavaScript feature with clear user flow and project impact.",
+    week2:
+      "Add a small TypeScript feature to your strongest web project, such as validation, filtering, or a saved result state.",
+    week3:
+      "Document the component, state, and error-handling decisions in the project README.",
+    resumeLine:
+      "Only strengthen JavaScript/TypeScript wording after the feature is working and linked.",
   },
   react: {
-    proofAction: "Add one polished React feature that demonstrates state, component structure, and user feedback.",
-    week2: "Improve an existing React project with a real workflow, loading state, empty state, and responsive layout.",
-    week3: "Record a short demo GIF or screenshot sequence showing the React workflow before adding it to the resume.",
-    resumeLine: "Only claim React product experience if the demo is usable and publicly reviewable."
+    proofAction:
+      "Add one polished React feature that demonstrates state, component structure, and user feedback.",
+    week2:
+      "Improve an existing React project with a real workflow, loading state, empty state, and responsive layout.",
+    week3:
+      "Record a short demo GIF or screenshot sequence showing the React workflow before adding it to the resume.",
+    resumeLine:
+      "Only claim React product experience if the demo is usable and publicly reviewable.",
   },
   sql: {
-    proofAction: "Create one SQL-backed analysis with joins, filters, and a short insight summary.",
-    week2: "Build a small notebook or script that uses SQL joins and aggregations on a public dataset.",
-    week3: "Add the schema, three important queries, and a before/after data-cleaning note to the repository.",
-    resumeLine: "Only list SQL examples that include real queries or database work you can explain."
+    proofAction:
+      "Create one SQL-backed analysis with joins, filters, and a short insight summary.",
+    week2:
+      "Build a small notebook or script that uses SQL joins and aggregations on a public dataset.",
+    week3:
+      "Add the schema, three important queries, and a before/after data-cleaning note to the repository.",
+    resumeLine:
+      "Only list SQL examples that include real queries or database work you can explain.",
   },
   "machine-learning": {
-    proofAction: "Document one ML project with dataset, model choice, evaluation metric, and error cases.",
-    week2: "Take one ML project and add a simple evaluation table with baseline, metric, and failure examples.",
-    week3: "Add a README section explaining why the metric was chosen and what the model still gets wrong.",
-    resumeLine: "Safe to strengthen ML wording only when the resume names a model, dataset, and metric."
+    proofAction:
+      "Document one ML project with dataset, model choice, evaluation metric, and error cases.",
+    week2:
+      "Take one ML project and add a simple evaluation table with baseline, metric, and failure examples.",
+    week3:
+      "Add a README section explaining why the metric was chosen and what the model still gets wrong.",
+    resumeLine:
+      "Safe to strengthen ML wording only when the resume names a model, dataset, and metric.",
   },
   "deep-learning": {
-    proofAction: "Build or document a small PyTorch/TensorFlow experiment with a measurable metric.",
-    week2: "Create a compact notebook that trains or fine-tunes a small model and records one evaluation result.",
-    week3: "Add reproducible setup steps and a short note about overfitting, compute limits, or model errors.",
-    resumeLine: "Only add framework names when the repo shows actual PyTorch/TensorFlow code."
+    proofAction:
+      "Build or document a small PyTorch/TensorFlow experiment with a measurable metric.",
+    week2:
+      "Create a compact notebook that trains or fine-tunes a small model and records one evaluation result.",
+    week3:
+      "Add reproducible setup steps and a short note about overfitting, compute limits, or model errors.",
+    resumeLine:
+      "Only add framework names when the repo shows actual PyTorch/TensorFlow code.",
   },
   llm: {
-    proofAction: "Build a small LLM workflow with prompts, guardrails, evaluation notes, and a user-facing demo.",
-    week2: "Create a tiny LLM app around one task, such as resume bullet feedback or FAQ answering, with clear input and output.",
-    week3: "Add prompt examples, failure cases, and a simple quality checklist before claiming LLM application experience.",
-    resumeLine: "Needs proof first: do not add LLM experience until the demo and evaluation notes exist."
+    proofAction:
+      "Build a small LLM workflow with prompts, guardrails, evaluation notes, and a user-facing demo.",
+    week2:
+      "Create a tiny LLM app around one task, such as resume bullet feedback or FAQ answering, with clear input and output.",
+    week3:
+      "Add prompt examples, failure cases, and a simple quality checklist before claiming LLM application experience.",
+    resumeLine:
+      "Needs proof first: do not add LLM experience until the demo and evaluation notes exist.",
   },
   rag: {
-    proofAction: "Build a small RAG demo with a local knowledge base before adding RAG or vector search to the resume.",
-    week2: "Create a minimal RAG proof using a few local markdown/PDF notes, chunking, retrieval, and cited answers.",
-    week3: "Document chunk size, retrieval examples, one bad answer, and how you checked answer quality.",
-    resumeLine: "Needs proof first: mention RAG only after the retrieval workflow can be shown."
+    proofAction:
+      "Build a small RAG demo with a local knowledge base before adding RAG or vector search to the resume.",
+    week2:
+      "Create a minimal RAG proof using a few local markdown/PDF notes, chunking, retrieval, and cited answers.",
+    week3:
+      "Document chunk size, retrieval examples, one bad answer, and how you checked answer quality.",
+    resumeLine:
+      "Needs proof first: mention RAG only after the retrieval workflow can be shown.",
   },
   "api-backend": {
-    proofAction: "Expose one backend API endpoint with validation, sample requests, and predictable error responses.",
-    week2: "Add a small API endpoint to a project, such as analyse, search, or save-report metadata.",
-    week3: "Document request/response examples and add one error case so backend evidence is not just a keyword.",
-    resumeLine: "Only claim API experience where the endpoint and validation can be inspected."
+    proofAction:
+      "Expose one backend API endpoint with validation, sample requests, and predictable error responses.",
+    week2:
+      "Add a small API endpoint to a project, such as analyse, search, or save-report metadata.",
+    week3:
+      "Document request/response examples and add one error case so backend evidence is not just a keyword.",
+    resumeLine:
+      "Only claim API experience where the endpoint and validation can be inspected.",
   },
   testing: {
-    proofAction: "Add one implemented test or error-handling flow before mentioning testing in the resume.",
-    week2: "Choose the most relevant project and add one unit test, validation check, or failure-state screen.",
-    week3: "Show how to run the test or trigger the error-handling flow in the README.",
-    resumeLine: "Needs proof first: mention testing only if the test or error-handling path is actually implemented."
+    proofAction:
+      "Add one implemented test or error-handling flow before mentioning testing in the resume.",
+    week2:
+      "Choose the most relevant project and add one unit test, validation check, or failure-state screen.",
+    week3:
+      "Show how to run the test or trigger the error-handling flow in the README.",
+    resumeLine:
+      "Needs proof first: mention testing only if the test or error-handling path is actually implemented.",
   },
   cloud: {
-    proofAction: "Complete one small cloud deployment or documented cloud walkthrough before claiming cloud experience.",
-    week2: "Prepare one deployable project with environment notes, build command, and a clear service boundary.",
-    week3: "Deploy to AWS/GCP/Azure free tier or document a Cloud Run/Lambda-style walkthrough with screenshots.",
-    resumeLine: "Needs proof first: add cloud platform names only after you have used that platform directly."
+    proofAction:
+      "Complete one small cloud deployment or documented cloud walkthrough before claiming cloud experience.",
+    week2:
+      "Prepare one deployable project with environment notes, build command, and a clear service boundary.",
+    week3:
+      "Deploy to AWS/GCP/Azure free tier or document a Cloud Run/Lambda-style walkthrough with screenshots.",
+    resumeLine:
+      "Needs proof first: add cloud platform names only after you have used that platform directly.",
   },
   docker: {
-    proofAction: "Containerise one existing AI/web project with a Dockerfile and local setup instructions.",
-    week2: "Pick one existing project and make sure it can run locally with documented install and start commands.",
-    week3: "Add a Dockerfile, test `docker build`, and include the exact run command in the README.",
-    resumeLine: "Needs proof first: add Docker only after the container builds and runs on your machine."
+    proofAction:
+      "Containerise one existing AI/web project with a Dockerfile and local setup instructions.",
+    week2:
+      "Pick one existing project and make sure it can run locally with documented install and start commands.",
+    week3:
+      "Add a Dockerfile, test `docker build`, and include the exact run command in the README.",
+    resumeLine:
+      "Needs proof first: add Docker only after the container builds and runs on your machine.",
   },
   "data-pipelines": {
-    proofAction: "Build a simple ingest-clean-transform pipeline and show before/after data quality checks.",
-    week2: "Create a small ETL script that loads a messy dataset, cleans fields, and exports a usable result.",
-    week3: "Add before/after row counts, validation checks, and a short explanation of cleaning decisions.",
-    resumeLine: "Only claim data pipeline work if the repo shows ingestion, transformation, and validation."
+    proofAction:
+      "Build a simple ingest-clean-transform pipeline and show before/after data quality checks.",
+    week2:
+      "Create a small ETL script that loads a messy dataset, cleans fields, and exports a usable result.",
+    week3:
+      "Add before/after row counts, validation checks, and a short explanation of cleaning decisions.",
+    resumeLine:
+      "Only claim data pipeline work if the repo shows ingestion, transformation, and validation.",
   },
   deployment: {
-    proofAction: "Deploy one working project and add the live demo link only after the deployment is stable.",
-    week2: "Choose the strongest AI/web project and make it deployable with a clean README and environment notes.",
-    week3: "Deploy it to Vercel or another suitable host, verify the URL, and add screenshots after it works.",
-    resumeLine: "Safe to add a live demo link only when the deployed project loads reliably."
+    proofAction:
+      "Deploy one working project and add the live demo link only after the deployment is stable.",
+    week2:
+      "Choose the strongest AI/web project and make it deployable with a clean README and environment notes.",
+    week3:
+      "Deploy it to Vercel or another suitable host, verify the URL, and add screenshots after it works.",
+    resumeLine:
+      "Safe to add a live demo link only when the deployed project loads reliably.",
   },
   monitoring: {
-    proofAction: "Add a basic evaluation or monitoring note with metric, baseline, and failure cases.",
-    week2: "Add logging, an evaluation table, or a simple metric check to your most relevant AI project.",
-    week3: "Document baseline result, one failure case, and one improvement idea in the README.",
-    resumeLine: "Only mention monitoring/evaluation if you can point to a metric or observed failure case."
+    proofAction:
+      "Add a basic evaluation or monitoring note with metric, baseline, and failure cases.",
+    week2:
+      "Add logging, an evaluation table, or a simple metric check to your most relevant AI project.",
+    week3:
+      "Document baseline result, one failure case, and one improvement idea in the README.",
+    resumeLine:
+      "Only mention monitoring/evaluation if you can point to a metric or observed failure case.",
   },
   mlops: {
-    proofAction: "Add a lightweight CI or model-evaluation workflow before claiming MLOps.",
-    week2: "Add a small script that re-runs one model or app quality check from the command line.",
-    week3: "Wire the check into GitHub Actions or document the manual command and expected output.",
-    resumeLine: "Needs proof first: add MLOps only after there is automation, versioning, or an evaluation workflow."
+    proofAction:
+      "Add a lightweight CI or model-evaluation workflow before claiming MLOps.",
+    week2:
+      "Add a small script that re-runs one model or app quality check from the command line.",
+    week3:
+      "Wire the check into GitHub Actions or document the manual command and expected output.",
+    resumeLine:
+      "Needs proof first: add MLOps only after there is automation, versioning, or an evaluation workflow.",
   },
   git: {
-    proofAction: "Make the project repository clean, public if appropriate, and easy to review.",
-    week2: "Clean up one repository with meaningful commits, setup instructions, and screenshots.",
-    week3: "Add issue/PR notes or a changelog entry to show collaborative workflow habits.",
-    resumeLine: "Safe to add GitHub links only when the repository is public, clean, and runnable."
+    proofAction:
+      "Make the project repository clean, public if appropriate, and easy to review.",
+    week2:
+      "Clean up one repository with meaningful commits, setup instructions, and screenshots.",
+    week3:
+      "Add issue/PR notes or a changelog entry to show collaborative workflow habits.",
+    resumeLine:
+      "Safe to add GitHub links only when the repository is public, clean, and runnable.",
   },
   degree: {
-    proofAction: "Map relevant coursework to the target role without overstating skills.",
-    week2: "Add one coursework-backed mini project or assignment summary related to the target AI role.",
-    week3: "Link coursework to project evidence rather than listing modules as standalone proof.",
-    resumeLine: "Safe to keep relevant coursework concise if it genuinely supports the target role."
+    proofAction:
+      "Map relevant coursework to the target role without overstating skills.",
+    week2:
+      "Add one coursework-backed mini project or assignment summary related to the target AI role.",
+    week3:
+      "Link coursework to project evidence rather than listing modules as standalone proof.",
+    resumeLine:
+      "Safe to keep relevant coursework concise if it genuinely supports the target role.",
   },
   communication: {
-    proofAction: "Write one short project explanation for a non-technical stakeholder.",
-    week2: "Add a product-facing project summary that explains problem, user, and outcome without jargon.",
-    week3: "Prepare one interview story about explaining a technical trade-off to teammates or users.",
-    resumeLine: "Safe to mention communication only when tied to a project, presentation, or collaboration example."
-  }
+    proofAction:
+      "Write one short project explanation for a non-technical stakeholder.",
+    week2:
+      "Add a product-facing project summary that explains problem, user, and outcome without jargon.",
+    week3:
+      "Prepare one interview story about explaining a technical trade-off to teammates or users.",
+    resumeLine:
+      "Safe to mention communication only when tied to a project, presentation, or collaboration example.",
+  },
 };
 
 export function analyseResumeAgainstJob(
   resumeText: string,
-  jobDescription: string
+  jobDescription: string,
 ): AnalysisResult {
   const selectedSignals = selectSignalsForJob(jobDescription);
-  const requirementMatches = selectedSignals.map((signal) => scoreSignal(signal, resumeText));
+  const requirementMatches = selectedSignals.map((signal) =>
+    scoreSignal(signal, resumeText),
+  );
 
   const scoreBreakdown = buildScoreBreakdown(requirementMatches);
-  const scoredWeight = scoreBreakdown.reduce((total, item) => total + item.weight, 0);
+  const scoredWeight = scoreBreakdown.reduce(
+    (total, item) => total + item.weight,
+    0,
+  );
   const overallScore = clampScore(
-    scoreBreakdown.reduce((total, item) => total + item.score * item.weight, 0) / Math.max(scoredWeight, 0.01)
+    scoreBreakdown.reduce(
+      (total, item) => total + item.score * item.weight,
+      0,
+    ) / Math.max(scoredWeight, 0.01),
   );
 
   const matchedRequirements = requirementMatches
@@ -184,7 +277,10 @@ export function analyseResumeAgainstJob(
         item.strength === "missing"
           ? `No direct resume evidence found for ${item.label.toLowerCase()}.`
           : `Only indirect evidence found: ${item.evidence.toLowerCase()}.`,
-      action: proofActionForGap(item.id)
+      whyItMatters: `${item.label} appears in the target role and needs defensible resume evidence.`,
+      gapType: gapTypeForMatch(item),
+      estimatedEffort: effortForGap(item.id),
+      action: proofActionForGap(item.id),
     }))
     .sort((a, b) => severityRank(a.severity) - severityRank(b.severity));
 
@@ -192,25 +288,60 @@ export function analyseResumeAgainstJob(
     label: item.label,
     category: item.category,
     strength: item.strength,
-    evidence: item.evidence
+    evidence: item.evidenceSnippet || item.evidence,
+    claimStatus:
+      item.strength === "strong"
+        ? "safe"
+        : item.strength === "partial" || item.strength === "weak"
+          ? "reframe"
+          : "needs-proof",
   }));
 
-  const priorityActions = buildPriorityActions(weakRequirements, matchedRequirements);
-  const resumeImprovements = buildResumeImprovements(weakRequirements, matchedRequirements);
+  const priorityActions = buildPriorityActions(
+    weakRequirements,
+    matchedRequirements,
+  );
+  const resumeImprovements = buildResumeImprovements(
+    weakRequirements,
+    matchedRequirements,
+  );
   const roadmap = buildRoadmap(priorityActions, weakRequirements, overallScore);
+  const existingStrengths = buildExistingStrengths(matchedRequirements);
+  const actionRoadmap = buildActionRoadmap(roadmap, weakRequirements);
+  const bulletRewrites = buildBulletRewrites(resumeText, matchedRequirements);
+  const interviewPreparation = buildInterviewPreparation(
+    matchedRequirements,
+    weakRequirements,
+  );
+  const finalRecommendation = buildFinalRecommendation(
+    overallScore,
+    matchedRequirements,
+    weakRequirements,
+  );
 
   return {
     generatedAt: new Date().toISOString(),
     overallScore,
     scoreLabel: scoreLabel(overallScore),
     scoreBreakdown,
-    roleFitSummary: buildRoleFitSummary(overallScore, matchedRequirements, weakRequirements),
+    scoreDisclaimer:
+      "This score estimates resume-to-role alignment. It does not predict interviews, offers, or hiring decisions.",
+    roleFitSummary: buildRoleFitSummary(
+      overallScore,
+      matchedRequirements,
+      weakRequirements,
+    ),
+    existingStrengths,
     matchedRequirements,
     weakRequirements,
     evidenceMap,
     priorityActions,
     resumeImprovements,
-    roadmap
+    roadmap,
+    actionRoadmap,
+    bulletRewrites,
+    interviewPreparation,
+    finalRecommendation,
   };
 }
 
@@ -222,16 +353,22 @@ function selectSignalsForJob(jobDescription: string) {
     return directHits > 0 || relatedHits > 0;
   });
 
-  const selected = explicitSignals.length >= 5
-    ? explicitSignals
-    : SKILL_SIGNALS.filter(
-        (signal) => explicitSignals.some((item) => item.id === signal.id) || DEFAULT_SIGNAL_IDS.includes(signal.id)
-      );
+  const selected =
+    explicitSignals.length >= 5
+      ? explicitSignals
+      : SKILL_SIGNALS.filter(
+          (signal) =>
+            explicitSignals.some((item) => item.id === signal.id) ||
+            DEFAULT_SIGNAL_IDS.includes(signal.id),
+        );
 
   return selected.sort((a, b) => b.weight - a.weight).slice(0, 14);
 }
 
-function scoreSignal(signal: SkillSignal, resumeText: string): RequirementMatch {
+function scoreSignal(
+  signal: SkillSignal,
+  resumeText: string,
+): RequirementMatch {
   const primaryHits = countTermHits(resumeText, signal.aliases);
   const relatedHits = countTermHits(resumeText, signal.related);
   const evidence = evidenceText(signal, primaryHits, relatedHits);
@@ -244,16 +381,26 @@ function scoreSignal(signal: SkillSignal, resumeText: string): RequirementMatch 
     strength,
     score: score * signal.weight,
     evidence,
-    matchedTerms: [...signal.aliases, ...signal.related].filter((term) => countTermHits(resumeText, [term]) > 0)
+    evidenceSnippet: findEvidenceSnippet(resumeText, [
+      ...signal.aliases,
+      ...signal.related,
+    ]),
+    matchedTerms: [...signal.aliases, ...signal.related].filter(
+      (term) => countTermHits(resumeText, [term]) > 0,
+    ),
   };
 }
 
-function buildScoreBreakdown(matches: RequirementMatch[]): ScoreBreakdownItem[] {
+function buildScoreBreakdown(
+  matches: RequirementMatch[],
+): ScoreBreakdownItem[] {
   const categories = Object.keys(CATEGORY_WEIGHTS) as RequirementCategory[];
 
   return categories
     .map((category) => {
-      const categoryMatches = matches.filter((match) => match.category === category);
+      const categoryMatches = matches.filter(
+        (match) => match.category === category,
+      );
       if (!categoryMatches.length) {
         return null;
       }
@@ -264,7 +411,10 @@ function buildScoreBreakdown(matches: RequirementMatch[]): ScoreBreakdownItem[] 
         const signal = SKILL_SIGNALS.find((item) => item.id === match.id);
         return total + (signal?.weight ?? 1);
       }, 0);
-      const earned = categoryMatches.reduce((total, match) => total + match.score, 0);
+      const earned = categoryMatches.reduce(
+        (total, match) => total + match.score,
+        0,
+      );
       const score = clampScore((earned / Math.max(max, 1)) * 100);
 
       return {
@@ -272,13 +422,17 @@ function buildScoreBreakdown(matches: RequirementMatch[]): ScoreBreakdownItem[] 
         label: categoryLabel(category),
         score,
         weight: CATEGORY_WEIGHTS[category],
-        explanation: categoryExplanation(category, score)
+        explanation: categoryExplanation(category, score),
       };
     })
     .filter(Boolean) as ScoreBreakdownItem[];
 }
 
-function evidenceText(signal: SkillSignal, primaryHits: number, relatedHits: number) {
+function evidenceText(
+  signal: SkillSignal,
+  primaryHits: number,
+  relatedHits: number,
+) {
   if (primaryHits >= 2) {
     return `Strong direct evidence across ${primaryHits} mentions.`;
   }
@@ -302,8 +456,14 @@ function evidenceText(signal: SkillSignal, primaryHits: number, relatedHits: num
   return "No direct evidence found in the resume text.";
 }
 
-function buildRoleFitSummary(score: number, matched: RequirementMatch[], gaps: GapItem[]) {
-  const topMatches = matched.slice(0, 3).map((item) => item.label.toLowerCase());
+function buildRoleFitSummary(
+  score: number,
+  matched: RequirementMatch[],
+  gaps: GapItem[],
+) {
+  const topMatches = matched
+    .slice(0, 3)
+    .map((item) => item.label.toLowerCase());
   const topGaps = gaps.slice(0, 3).map((item) => item.label.toLowerCase());
 
   if (score >= 82) {
@@ -321,12 +481,15 @@ function buildRoleFitSummary(score: number, matched: RequirementMatch[], gaps: G
   return `The resume is early for this target role. Start by building proof for ${joinList(topGaps)} and rewriting the resume so each project maps to a clear role requirement.`;
 }
 
-function buildPriorityActions(gaps: GapItem[], matched: RequirementMatch[]): PriorityAction[] {
+function buildPriorityActions(
+  gaps: GapItem[],
+  matched: RequirementMatch[],
+): PriorityAction[] {
   const highImpact = gaps.slice(0, 5).map<PriorityAction>((gap, index) => ({
     title: `Needs proof first: ${gap.action.replace(/\.$/, "")}`,
     detail: `Targets ${gap.label.toLowerCase()} because the job description expects it and current resume evidence is ${gap.severity === "high" ? "missing" : "thin"}. Do the proof before adding the skill to the resume.`,
     severity: gap.severity,
-    timeframe: index < 2 ? "This week" : "Next 30 days"
+    timeframe: index < 2 ? "This week" : "Next 30 days",
   }));
 
   if (highImpact.length >= 3) {
@@ -339,12 +502,15 @@ function buildPriorityActions(gaps: GapItem[], matched: RequirementMatch[]): Pri
       title: "Safe to add: quantify your strongest projects",
       detail: `Use the strongest signals already present, such as ${joinList(matched.slice(0, 2).map((item) => item.label.toLowerCase()))}, and add metrics, users, or technical outcomes.`,
       severity: "medium",
-      timeframe: "This week"
-    }
+      timeframe: "This week",
+    },
   ];
 }
 
-function buildResumeImprovements(gaps: GapItem[], matched: RequirementMatch[]): ResumeRecommendation[] {
+function buildResumeImprovements(
+  gaps: GapItem[],
+  matched: RequirementMatch[],
+): ResumeRecommendation[] {
   const strongMatches = matched
     .filter((item) => item.strength === "strong")
     .slice(0, 3)
@@ -353,35 +519,216 @@ function buildResumeImprovements(gaps: GapItem[], matched: RequirementMatch[]): 
 
   const improvements: ResumeRecommendation[] = [
     {
-      status: "safe",
-      text: "Safe to add: rewrite one existing project bullet using problem -> action -> technology -> result, but only with facts already in your resume."
+      status: "reframe",
+      text: "Reframe carefully: rewrite one existing project bullet using problem -> action -> technology -> result, using only facts already supported by the resume.",
     },
     {
       status: "safe",
       text: strongMatches.length
         ? `Safe to add: move supported strengths (${joinList(strongMatches)}) into the top third of the resume and quantify outcomes where possible.`
-        : "Safe to add: keep the summary focused on proven coursework, projects, and tools already visible in the resume."
-    }
+        : "Safe to add: keep the summary focused on proven coursework, projects, and tools already visible in the resume.",
+    },
   ];
 
   for (const gap of topGaps) {
     improvements.push({
       status: "needs-proof",
-      text: `${proofResumeLine(gap.id)}`
+      text: `${proofResumeLine(gap.id)}`,
     });
   }
 
   if (gaps.some((gap) => gap.category === "tools")) {
     improvements.push({
       status: "needs-proof",
-      text: "Needs proof first: separate AI frameworks, deployment tools, and developer tools only after each one has visible project evidence."
+      text: "Needs proof first: separate AI frameworks, deployment tools, and developer tools only after each one has visible project evidence.",
     });
   }
 
   return improvements.slice(0, 6);
 }
 
-function buildRoadmap(actions: PriorityAction[], gaps: GapItem[], score: number): RoadmapWeek[] {
+function buildExistingStrengths(
+  matches: RequirementMatch[],
+): ExistingStrength[] {
+  return matches.slice(0, 4).map((match) => ({
+    title: match.label,
+    evidence: match.evidenceSnippet || match.evidence,
+    whyItMatters: `This is ${match.strength === "strong" ? "clear" : "credible but improvable"} evidence for a requirement in the target role.`,
+  }));
+}
+
+function buildActionRoadmap(
+  weeks: RoadmapWeek[],
+  gaps: GapItem[],
+): ActionRoadmapGroup[] {
+  const firstGap = gaps[0];
+  const secondGap = gaps[1] ?? firstGap;
+
+  return [
+    {
+      period: "Today",
+      tasks: [
+        firstGap
+          ? `Label ${firstGap.label.toLowerCase()} as "Needs proof first" in your working notes.`
+          : "Mark which claims are already supported and which still need proof.",
+        weeks[0]?.tasks[2] ??
+          "Rewrite one existing bullet using only verified experience.",
+      ],
+    },
+    {
+      period: "This week",
+      tasks: [
+        firstGap?.action ??
+          "Choose one priority gap and define a small proof task.",
+        "Create a repository issue or checklist with a clear input, output, and completion test.",
+      ],
+    },
+    {
+      period: "This month",
+      tasks: [
+        weeks[1]?.tasks[0] ?? "Build one small, reviewable proof project.",
+        weeks[2]?.tasks[0] ??
+          "Document the result, limitation, and setup steps.",
+        secondGap
+          ? `Prepare one honest interview story about your current ${secondGap.label.toLowerCase()} gap.`
+          : "Prepare two evidence-backed project stories.",
+      ],
+    },
+    {
+      period: "Longer term",
+      tasks: [
+        "Repeat the analysis after material resume or project changes, not after cosmetic edits alone.",
+        "Track which target roles repeatedly expose the same gap and prioritise durable skills over keyword collecting.",
+      ],
+    },
+  ];
+}
+
+function buildBulletRewrites(
+  resumeText: string,
+  matches: RequirementMatch[],
+): BulletRewrite[] {
+  const supportedTerms = new Set(
+    matches
+      .flatMap((match) => match.matchedTerms)
+      .map((term) => normaliseText(term)),
+  );
+  const bullets = resumeText
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .filter((line) => /^[-*]/.test(line) && line.length >= 25)
+    .sort((a, b) => {
+      const score = (line: string) =>
+        [...supportedTerms].filter((term) => normaliseText(line).includes(term))
+          .length;
+      return score(b) - score(a);
+    })
+    .slice(0, 2);
+
+  if (!bullets.length) {
+    return [
+      {
+        original: "No project bullet was reliably detected.",
+        suggested:
+          "Add one truthful project bullet in the format: problem -> action -> technology -> verified result.",
+        whyStronger:
+          "A structured bullet makes existing evidence easier to assess without creating a new claim.",
+        status: "reframe",
+      },
+    ];
+  }
+
+  return bullets.map((bullet) => {
+    const clean = bullet.replace(/^[-*]\s*/, "").replace(/\.$/, "");
+    return {
+      original: clean,
+      suggested: `${clean}. [Add a verified result or scale only if you can evidence it.]`,
+      whyStronger:
+        "This preserves the original experience while making the missing outcome explicit instead of inventing a metric.",
+      status: "reframe" as const,
+    };
+  });
+}
+
+function buildInterviewPreparation(
+  matches: RequirementMatch[],
+  gaps: GapItem[],
+): InterviewPreparation {
+  const topMatches = matches.slice(0, 3);
+  const topGaps = gaps.slice(0, 3);
+  const matchLabels = topMatches.map((item) => item.label);
+  const gapLabels = topGaps.map((item) => item.label);
+
+  return {
+    themes: [...matchLabels, ...gapLabels].slice(0, 5),
+    questions: [
+      `Walk me through a project that demonstrates ${matchLabels[0]?.toLowerCase() ?? "your strongest technical skill"}.`,
+      `How did you evaluate quality or handle failure cases in ${matchLabels[1]?.toLowerCase() ?? "a recent project"}?`,
+      `What would you build to gain credible experience in ${gapLabels[0]?.toLowerCase() ?? "your largest skill gap"}?`,
+      "Describe a technical trade-off you made and how you explained it to someone else.",
+      `If asked to use ${gapLabels[1]?.toLowerCase() ?? "an unfamiliar tool"}, how would you learn it without overstating your experience?`,
+    ],
+    evidenceToPrepare: topMatches.map(
+      (item) => item.evidenceSnippet || item.evidence,
+    ),
+    honestWeaknesses: topGaps.map((gap) => `${gap.label}: ${gap.reason}`),
+    doNotBluff: topGaps
+      .filter((gap) => gap.severity === "high")
+      .map((gap) => gap.label),
+  };
+}
+
+function buildFinalRecommendation(
+  score: number,
+  matches: RequirementMatch[],
+  gaps: GapItem[],
+): FinalRecommendation {
+  const highGaps = gaps.filter((gap) => gap.severity === "high");
+  const strongest = matches[0]?.label.toLowerCase() ?? "relevant project work";
+  const firstGap = gaps[0];
+
+  if (score >= 78 && highGaps.length <= 1) {
+    return {
+      decision: "Apply now",
+      explanation: `The resume already shows credible alignment through ${strongest}, with only limited high-priority gaps.`,
+      nextStep:
+        "Tailor the top summary and prepare evidence for every claim before submitting.",
+    };
+  }
+
+  if (score >= 62 && highGaps.length <= 3) {
+    return {
+      decision: "Apply after light resume edits",
+      explanation: `There is enough relevant evidence to apply, but the positioning is weakened by ${firstGap?.label.toLowerCase() ?? "a few thin signals"}.`,
+      nextStep:
+        "Make the supported strengths easier to see and do not add unsupported skills.",
+    };
+  }
+
+  if (score >= 42) {
+    return {
+      decision: "Build one proof project first",
+      explanation: `The foundation is promising, but the current resume does not yet defend the most important gap: ${firstGap?.label.toLowerCase() ?? "role-specific evidence"}.`,
+      nextStep:
+        firstGap?.action ??
+        "Complete one small proof project, document it, and then re-run the analysis.",
+    };
+  }
+
+  return {
+    decision: "Significant preparation needed",
+    explanation:
+      "Several core role requirements are missing or only weakly supported in the current resume.",
+    nextStep:
+      "Choose a narrower target role, build one foundational project, and reassess before applying broadly.",
+  };
+}
+
+function buildRoadmap(
+  actions: PriorityAction[],
+  gaps: GapItem[],
+  score: number,
+): RoadmapWeek[] {
   const firstGap = gaps[0];
   const secondGap = gaps[1];
   const thirdGap = gaps[2];
@@ -397,8 +744,8 @@ function buildRoadmap(actions: PriorityAction[], gaps: GapItem[], score: number)
       tasks: [
         `Mark ${proofFocus.toLowerCase()} as "Needs proof first" until a working project or documented evidence exists.`,
         "Update the resume skills section with exact terms from the job description.",
-        "Rewrite one existing project bullet using problem -> action -> technology -> result."
-      ]
+        "Rewrite one existing project bullet using problem -> action -> technology -> result.",
+      ],
     },
     {
       week: "Week 2",
@@ -408,8 +755,8 @@ function buildRoadmap(actions: PriorityAction[], gaps: GapItem[], score: number)
         "Keep the scope small enough to finish: one working feature, one README, and one screenshot is better than a half-built platform.",
         firstGap?.id === "rag"
           ? "Include one retrieval example, one cited answer, and one failure case so RAG evidence is explainable."
-          : "Connect the project to a user problem and write down the expected input, output, and success check."
-      ]
+          : "Connect the project to a user problem and write down the expected input, output, and success check.",
+      ],
     },
     {
       week: "Week 3",
@@ -417,29 +764,82 @@ function buildRoadmap(actions: PriorityAction[], gaps: GapItem[], score: number)
       tasks: [
         evidenceTask,
         supportTask,
-        "Add GitHub or live demo links only if the repository is public, clean, and the demo actually works."
-      ]
+        "Add GitHub or live demo links only if the repository is public, clean, and the demo actually works.",
+      ],
     },
     {
       week: "Week 4",
-      title: score >= 66 ? "Resume rewrite and application preparation" : "Re-score, rewrite, and fill remaining gaps",
+      title:
+        score >= 66
+          ? "Resume rewrite and application preparation"
+          : "Re-score, rewrite, and fill remaining gaps",
       tasks: [
         "Run KopiBridge again with the revised resume and compare the score breakdown.",
         "Move completed proof into the resume only after it is implemented, documented, and easy to explain.",
         actions[0]
           ? `Prepare one interview story for the top gap: ${actions[0].title.replace("Needs proof first: ", "").toLowerCase()}.`
-          : "Prepare two interview stories for proven strengths and one honest story for a known gap."
-      ]
-    }
+          : "Prepare two interview stories for proven strengths and one honest story for a known gap.",
+      ],
+    },
   ];
 }
 
 function proofActionForGap(id: string) {
-  return GAP_PROOF_GUIDES[id]?.proofAction ?? "Create visible project evidence with code, output, README notes, and a measurable result.";
+  return (
+    GAP_PROOF_GUIDES[id]?.proofAction ??
+    "Create visible project evidence with code, output, README notes, and a measurable result."
+  );
+}
+
+function findEvidenceSnippet(resumeText: string, terms: string[]) {
+  const chunks = resumeText
+    .split(/\r?\n|(?<=[.!?])\s+/)
+    .map((chunk) => chunk.trim())
+    .filter((chunk) => chunk.length >= 20 && !/@/.test(chunk));
+  const snippet = chunks.find((chunk) =>
+    terms.some((term) => countTermHits(chunk, [term]) > 0),
+  );
+
+  if (!snippet) {
+    return "";
+  }
+
+  return snippet.length > 180 ? `${snippet.slice(0, 177).trim()}...` : snippet;
+}
+
+function gapTypeForMatch(match: RequirementMatch): GapItem["gapType"] {
+  if (match.strength === "missing") {
+    return match.category === "experience" ? "experience gap" : "missing skill";
+  }
+
+  if (match.category === "communication" || match.category === "education") {
+    return "positioning gap";
+  }
+
+  return "weak evidence";
+}
+
+function effortForGap(id: string) {
+  const effort: Record<string, string> = {
+    docker: "1-3 days",
+    testing: "1-2 days",
+    deployment: "2-5 days",
+    cloud: "3-7 days",
+    rag: "5-10 days",
+    llm: "5-10 days",
+    mlops: "4-7 days",
+    "machine-learning": "3-7 days",
+    "deep-learning": "5-10 days",
+  };
+
+  return effort[id] ?? "2-5 days";
 }
 
 function proofResumeLine(id: string) {
-  return GAP_PROOF_GUIDES[id]?.resumeLine ?? "Needs proof first: build visible evidence before adding this requirement to the resume.";
+  return (
+    GAP_PROOF_GUIDES[id]?.resumeLine ??
+    "Needs proof first: build visible evidence before adding this requirement to the resume."
+  );
 }
 
 function roadmapTask(gap: GapItem | undefined, phase: "week2" | "week3") {
@@ -458,14 +858,19 @@ function categoryLabel(category: RequirementCategory) {
     experience: "Experience",
     tools: "Tools & Tech",
     education: "Education",
-    communication: "Communication"
+    communication: "Communication",
   };
 
   return labels[category];
 }
 
 function categoryExplanation(category: RequirementCategory, score: number) {
-  const quality = score >= 70 ? "well supported" : score >= 45 ? "partially supported" : "needs clearer evidence";
+  const quality =
+    score >= 70
+      ? "well supported"
+      : score >= 45
+        ? "partially supported"
+        : "needs clearer evidence";
   return `${categoryLabel(category)} evidence is ${quality} by direct and adjacent keyword matches.`;
 }
 

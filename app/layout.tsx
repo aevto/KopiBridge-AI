@@ -3,11 +3,12 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "KopiBridge AI",
-  description: "Turn your resume into a roadmap for your next AI tech role."
+  description:
+    "Evidence-led resume-to-role analysis with honest claim guidance and a practical action roadmap.",
 };
 
 export default function RootLayout({
-  children
+  children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {

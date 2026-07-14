@@ -7,34 +7,39 @@ import tseslint from "typescript-eslint";
 
 const eslintConfig = [
   {
-    ignores: [".next/**", "node_modules/**", "public/pdf.worker.min.mjs"]
+    ignores: [".next/**", "node_modules/**", "public/pdf.worker.min.mjs"],
   },
   js.configs.recommended,
   ...tseslint.configs.recommended,
   {
-    files: ["app/**/*.{ts,tsx}", "components/**/*.{ts,tsx}", "lib/**/*.ts", "types/**/*.ts"],
+    files: [
+      "app/**/*.{ts,tsx}",
+      "components/**/*.{ts,tsx}",
+      "lib/**/*.ts",
+      "types/**/*.ts",
+    ],
     languageOptions: {
       globals: {
         ...globals.browser,
-        ...globals.node
-      }
+        ...globals.node,
+      },
     },
     plugins: {
       "@next/next": nextPlugin,
       react: reactPlugin,
-      "react-hooks": reactHooksPlugin
+      "react-hooks": reactHooksPlugin,
     },
     settings: {
       react: {
-        version: "detect"
-      }
+        version: "detect",
+      },
     },
     rules: {
       ...nextPlugin.configs["core-web-vitals"].rules,
       ...reactHooksPlugin.configs.recommended.rules,
-      "react/react-in-jsx-scope": "off"
-    }
-  }
+      "react/react-in-jsx-scope": "off",
+    },
+  },
 ];
 
 export default eslintConfig;

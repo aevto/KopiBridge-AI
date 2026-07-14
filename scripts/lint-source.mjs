@@ -8,16 +8,16 @@ const sourceExtensions = new Set([".ts", ".tsx"]);
 const bannedPatterns = [
   {
     label: "dangerouslySetInnerHTML is not allowed in this prototype.",
-    pattern: /dangerouslySetInnerHTML/
+    pattern: /dangerouslySetInnerHTML/,
   },
   {
     label: "Do not add the Stage 2 /api/explain route yet.",
-    pattern: /\/api\/explain/
+    pattern: /\/api\/explain/,
   },
   {
     label: "Stage 1 must not require OPENAI_API_KEY.",
-    pattern: /OPENAI_API_KEY/
-  }
+    pattern: /OPENAI_API_KEY/,
+  },
 ];
 
 function collectFiles(dir) {
@@ -61,12 +61,17 @@ for (const file of files) {
     source,
     ts.ScriptTarget.Latest,
     true,
-    path.extname(file) === ".tsx" ? ts.ScriptKind.TSX : ts.ScriptKind.TS
+    path.extname(file) === ".tsx" ? ts.ScriptKind.TSX : ts.ScriptKind.TS,
   );
 
   for (const diagnostic of sourceFile.parseDiagnostics) {
-    const { line, character } = sourceFile.getLineAndCharacterOfPosition(diagnostic.start ?? 0);
-    const message = ts.flattenDiagnosticMessageText(diagnostic.messageText, "\n");
+    const { line, character } = sourceFile.getLineAndCharacterOfPosition(
+      diagnostic.start ?? 0,
+    );
+    const message = ts.flattenDiagnosticMessageText(
+      diagnostic.messageText,
+      "\n",
+    );
     failures.push(`${relativeFile}:${line + 1}:${character + 1} ${message}`);
   }
 }

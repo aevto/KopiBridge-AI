@@ -13,14 +13,46 @@
 body {
   margin: 0;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(251, 247, 242, 0.98) 24rem),
-    linear-gradient(115deg, rgba(241, 230, 216, 0.34), rgba(255, 255, 255, 0) 38rem),
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.9),
+      rgba(251, 247, 242, 0.98) 24rem
+    ),
+    linear-gradient(
+      115deg,
+      rgba(241, 230, 216, 0.34),
+      rgba(255, 255, 255, 0) 38rem
+    ),
     #fbf7f2;
   color: #2c1a17;
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
   line-height: 1.5;
   overflow-x: hidden;
   text-rendering: optimizeLegibility;
+}
+
+a,
+button,
+input,
+textarea,
+summary {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+summary:focus-visible {
+  outline: 2px solid #237551;
+  outline-offset: 3px;
 }
 
 button,
@@ -81,12 +113,22 @@ textarea {
     color: #111111 !important;
   }
 
+  .printable-report > * {
+    margin-bottom: 12pt !important;
+  }
+
   .print-stack {
     display: block !important;
   }
 
   .print-stack > * {
     margin-bottom: 12pt !important;
+  }
+
+  .print-roadmap-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10pt !important;
   }
 
   .print-card,
@@ -100,6 +142,13 @@ textarea {
     border: 1px solid #d6d3cf !important;
     background: #ffffff !important;
     box-shadow: none !important;
+  }
+
+  .printable-report h2,
+  .printable-report h3,
+  .printable-report h4 {
+    break-after: avoid;
+    page-break-after: avoid;
   }
 
   .print-card * {
