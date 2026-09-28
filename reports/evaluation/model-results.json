@@ -1,0 +1,1733 @@
+{
+  "runAt": "2026-09-28T07:18:28.671Z",
+  "dataset": "Purpose-written synthetic resume and interview fixtures",
+  "note": "Exploratory synthetic fixtures, not a representative human benchmark. Single run per case/model. No hiring accuracy is measured.",
+  "runs": [
+    {
+      "kind": "vision",
+      "model": "gpt-4.1-mini-2025-04-14",
+      "id": "clean",
+      "success": true,
+      "latencyMs": 4175,
+      "text": "EARLY CAREER SOFTWARE DEVELOPER\n\nEDUCATION\n\nBSc Computer Science, expected 2026\n\nSKILLS\n\nPython, JavaScript, React, SQL, Git\n\nPROJECTS\n\nBuilt a Flask API for a campus events application.\n\nAdded input validation and two unit tests with pytest.\n\nStored event records in SQLite and documented setup.\n\nCreated a React interface for searching campus events.\n\nEXPERIENCE\n\nPresented the project to a class of students.\n\nWorked with two classmates using Git branches.\n\nNo Docker, cloud deployment, or RAG project yet.",
+      "warnings": [],
+      "usage": {
+        "input_tokens": 2537,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 138,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 2675
+      },
+      "reference": "EARLY CAREER SOFTWARE DEVELOPER\nEDUCATION\nBSc Computer Science, expected 2026\nSKILLS\nPython, JavaScript, React, SQL, Git\nPROJECTS\nBuilt a Flask API for a campus events application.\nAdded input validation and two unit tests with pytest.\nStored event records in SQLite and documented setup.\nCreated a React interface for searching campus events.\nEXPERIENCE\nPresented the project to a class of students.\nWorked with two classmates using Git branches.\nNo Docker, cloud deployment, or RAG project yet.",
+      "wordErrorRate": 0,
+      "requestedModel": "gpt-4.1-mini"
+    },
+    {
+      "kind": "vision",
+      "model": "gpt-4.1-mini-2025-04-14",
+      "id": "columns",
+      "success": true,
+      "latencyMs": 3196,
+      "text": "EARLY CAREER SOFTWARE DEVELOPER\n\nEDUCATION\n\nBSc Computer Science, expected 2026\n\nSKILLS\n\nPython, JavaScript, React, SQL, Git\n\nPROJECTS\n\nBuilt a Flask API for a campus events application.\n\nAdded input validation and two unit tests with pytest.\n\nStored event records in SQLite and documented setup.\n\nCreated a React interface for searching campus events.\n\nEXPERIENCE\n\nPresented the project to a class of students.\n\nWorked with two classmates using Git branches.\n\nNo Docker, cloud deployment, or RAG project yet.",
+      "warnings": [],
+      "usage": {
+        "input_tokens": 2537,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 138,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 2675
+      },
+      "reference": "EARLY CAREER SOFTWARE DEVELOPER\nEDUCATION\nBSc Computer Science, expected 2026\nSKILLS\nPython, JavaScript, React, SQL, Git\nPROJECTS\nBuilt a Flask API for a campus events application.\nAdded input validation and two unit tests with pytest.\nStored event records in SQLite and documented setup.\nCreated a React interface for searching campus events.\nEXPERIENCE\nPresented the project to a class of students.\nWorked with two classmates using Git branches.\nNo Docker, cloud deployment, or RAG project yet.",
+      "wordErrorRate": 0,
+      "requestedModel": "gpt-4.1-mini"
+    },
+    {
+      "kind": "vision",
+      "model": "gpt-4.1-mini-2025-04-14",
+      "id": "low-contrast",
+      "success": true,
+      "latencyMs": 4663,
+      "text": "EARLY CAREER SOFTWARE DEVELOPER\n\nEDUCATION\n\nBSc Computer Science, expected 2026\n\nSKILLS\n\nPython, JavaScript, React, SQL, Git\n\nPROJECTS\n\nBuilt a Flask API for a campus events application.\n\nAdded input validation and two unit tests with pytest.\n\nStored event records in SQLite and documented setup.\n\nCreated a React interface for searching campus events.\n\nEXPERIENCE\n\nPresented the project to a class of students.\n\nWorked with two classmates using Git branches.\n\nNo Docker, cloud deployment, or RAG project yet.",
+      "warnings": [],
+      "usage": {
+        "input_tokens": 2537,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 138,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 2675
+      },
+      "reference": "EARLY CAREER SOFTWARE DEVELOPER\nEDUCATION\nBSc Computer Science, expected 2026\nSKILLS\nPython, JavaScript, React, SQL, Git\nPROJECTS\nBuilt a Flask API for a campus events application.\nAdded input validation and two unit tests with pytest.\nStored event records in SQLite and documented setup.\nCreated a React interface for searching campus events.\nEXPERIENCE\nPresented the project to a class of students.\nWorked with two classmates using Git branches.\nNo Docker, cloud deployment, or RAG project yet.",
+      "wordErrorRate": 0,
+      "requestedModel": "gpt-4.1-mini"
+    },
+    {
+      "kind": "vision",
+      "model": "gpt-4o-mini-2024-07-18",
+      "id": "clean",
+      "success": true,
+      "latencyMs": 2257,
+      "text": "EARLY CAREER SOFTWARE DEVELOPER\n\nEDUCATION\n\nBSc Computer Science, expected 2026\n\nSKILLS\n\nPython, JavaScript, React, SQL, Git\n\nPROJECTS\n\nBuilt a Flask API for a campus events application.\n\nAdded input validation and two unit tests with pytest.\n\nStored event records in SQLite and documented setup.\n\nCreated a React interface for searching campus events.\n\nEXPERIENCE\n\nPresented the project to a class of students.\n\nWorked with two classmates using Git branches.\n\nNo Docker, cloud deployment, or RAG project yet.",
+      "warnings": [],
+      "usage": {
+        "input_tokens": 25645,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 138,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 25783
+      },
+      "reference": "EARLY CAREER SOFTWARE DEVELOPER\nEDUCATION\nBSc Computer Science, expected 2026\nSKILLS\nPython, JavaScript, React, SQL, Git\nPROJECTS\nBuilt a Flask API for a campus events application.\nAdded input validation and two unit tests with pytest.\nStored event records in SQLite and documented setup.\nCreated a React interface for searching campus events.\nEXPERIENCE\nPresented the project to a class of students.\nWorked with two classmates using Git branches.\nNo Docker, cloud deployment, or RAG project yet.",
+      "wordErrorRate": 0,
+      "requestedModel": "gpt-4o-mini"
+    },
+    {
+      "kind": "vision",
+      "model": "gpt-4o-mini-2024-07-18",
+      "id": "columns",
+      "success": true,
+      "latencyMs": 2461,
+      "text": "EARLY CAREER SOFTWARE DEVELOPER\n\nEDUCATION\nBSc Computer Science, expected 2026  Built a Flask API for a campus events application.\n\nSKILLS\nPython, JavaScript, React, SQL, Git  Added input validation and two unit tests with pytest.\n\nPROJECTS\nStored event records in SQLite and documented setup.\nCreated a React interface for searching campus events.\n\nEXPERIENCE\nPresented the project to a class of students.\nWorked with two classmates using Git branches.\nNo Docker, cloud deployment, or RAG project yet.",
+      "warnings": [],
+      "usage": {
+        "input_tokens": 25645,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 129,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 25774
+      },
+      "reference": "EARLY CAREER SOFTWARE DEVELOPER\nEDUCATION\nBSc Computer Science, expected 2026\nSKILLS\nPython, JavaScript, React, SQL, Git\nPROJECTS\nBuilt a Flask API for a campus events application.\nAdded input validation and two unit tests with pytest.\nStored event records in SQLite and documented setup.\nCreated a React interface for searching campus events.\nEXPERIENCE\nPresented the project to a class of students.\nWorked with two classmates using Git branches.\nNo Docker, cloud deployment, or RAG project yet.",
+      "wordErrorRate": 0.1867,
+      "requestedModel": "gpt-4o-mini"
+    },
+    {
+      "kind": "vision",
+      "model": "gpt-4o-mini-2024-07-18",
+      "id": "low-contrast",
+      "success": true,
+      "latencyMs": 4410,
+      "text": "EARLY CAREER SOFTWARE DEVELOPER\n\nEDUCATION\n\nBSc Computer Science, expected 2026\n\nSKILLS\n\nPython, JavaScript, React, SQL, Git\n\nPROJECTS\n\nBuilt a Flask API for a campus events application.\n\nAdded input validation and two unit tests with pytest.\n\nStored event records in SQLite and documented setup.\n\nCreated a React interface for searching campus events.\n\nEXPERIENCE\n\nPresented the project to a class of students.\n\nWorked with two classmates using Git branches.\n\nNo Docker, cloud deployment, or RAG project yet.",
+      "warnings": [],
+      "usage": {
+        "input_tokens": 25645,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 138,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 25783
+      },
+      "reference": "EARLY CAREER SOFTWARE DEVELOPER\nEDUCATION\nBSc Computer Science, expected 2026\nSKILLS\nPython, JavaScript, React, SQL, Git\nPROJECTS\nBuilt a Flask API for a campus events application.\nAdded input validation and two unit tests with pytest.\nStored event records in SQLite and documented setup.\nCreated a React interface for searching campus events.\nEXPERIENCE\nPresented the project to a class of students.\nWorked with two classmates using Git branches.\nNo Docker, cloud deployment, or RAG project yet.",
+      "wordErrorRate": 0,
+      "requestedModel": "gpt-4o-mini"
+    },
+    {
+      "kind": "audio",
+      "model": "gpt-4o-mini-transcribe",
+      "id": "specific",
+      "success": true,
+      "latencyMs": 2279,
+      "text": "I built a Flask API for campus events. I added input validation and two unit tests using pytest. The events were stored in SQLite. I worked with two classmates using Git branches. I have not deployed the project to a cloud platform yet. I would prepare the repository and test results to explain my contribution.",
+      "reference": "I built a Flask API for campus events. I added input validation and two unit tests using pytest. The events were stored in SQLite. I worked with two classmates using Git branches. I have not deployed the project to a cloud platform yet. I would prepare the repository and test results to explain my contribution.",
+      "wordErrorRate": 0,
+      "durationSeconds": 19.2300625,
+      "requestedModel": "gpt-4o-mini-transcribe"
+    },
+    {
+      "kind": "audio",
+      "model": "gpt-4o-mini-transcribe",
+      "id": "unsupported",
+      "success": true,
+      "latencyMs": 1357,
+      "text": "I built a Flask application for campus events. I would like to learn Docker and cloud deployment next. I have not used either in a completed project, so I cannot claim that experience. My next step is to containerize the application, test the local setup, and document the commands.",
+      "reference": "I built a Flask application for campus events. I would like to learn Docker and cloud deployment next. I have not used either in a completed project, so I cannot claim that experience. My next step is to containerise the application, test the local setup, and document the commands.",
+      "wordErrorRate": 0.0204,
+      "durationSeconds": 17.14825,
+      "requestedModel": "gpt-4o-mini-transcribe"
+    },
+    {
+      "kind": "audio",
+      "model": "gpt-4o-mini-transcribe",
+      "id": "noisy",
+      "success": true,
+      "latencyMs": 2052,
+      "text": "I created a React interface for searching campus events. My role was building the search form and connecting it to our Flask API. I can show the repository and explain the request validation. We did not measure performance, so I would not claim a speed improvement.",
+      "reference": "I created a React interface for searching campus events. My role was building the search form and connecting it to our Flask API. I can show the repository and explain the request validation. We did not measure performance, so I would not claim a speed improvement.",
+      "wordErrorRate": 0,
+      "durationSeconds": 15.4513125,
+      "requestedModel": "gpt-4o-mini-transcribe"
+    },
+    {
+      "kind": "audio",
+      "model": "whisper-1",
+      "id": "specific",
+      "success": true,
+      "latencyMs": 3231,
+      "text": "I built a Flask API for campus events. I added input validation and two unit tests using PyTest. The events were stored in SQLite. I worked with two classmates using Git branches. I have not deployed the project to a cloud platform yet. I would prepare the repository and test results to explain my contribution.",
+      "reference": "I built a Flask API for campus events. I added input validation and two unit tests using pytest. The events were stored in SQLite. I worked with two classmates using Git branches. I have not deployed the project to a cloud platform yet. I would prepare the repository and test results to explain my contribution.",
+      "wordErrorRate": 0,
+      "durationSeconds": 19.2300625,
+      "requestedModel": "whisper-1"
+    },
+    {
+      "kind": "audio",
+      "model": "whisper-1",
+      "id": "unsupported",
+      "success": true,
+      "latencyMs": 1351,
+      "text": "I built a Flask application for campus events. I would like to learn Docker and Cloud Deployment next. I have not used either in a completed project, so I cannot claim that experience. My next step is to containerize the application, test the local setup, and document the commands.",
+      "reference": "I built a Flask application for campus events. I would like to learn Docker and cloud deployment next. I have not used either in a completed project, so I cannot claim that experience. My next step is to containerise the application, test the local setup, and document the commands.",
+      "wordErrorRate": 0.0204,
+      "durationSeconds": 17.14825,
+      "requestedModel": "whisper-1"
+    },
+    {
+      "kind": "audio",
+      "model": "whisper-1",
+      "id": "noisy",
+      "success": true,
+      "latencyMs": 1705,
+      "text": "I created a React interface for searching campus events. My role was building the search form and connecting it to our Flask API. I can show the repository and explain the request validation. We did not measure performance, so I would not claim a speed improvement.",
+      "reference": "I created a React interface for searching campus events. My role was building the search form and connecting it to our Flask API. I can show the repository and explain the request validation. We did not measure performance, so I would not claim a speed improvement.",
+      "wordErrorRate": 0,
+      "durationSeconds": 15.4513125,
+      "requestedModel": "whisper-1"
+    },
+    {
+      "kind": "guidance",
+      "model": "gpt-5.6-terra",
+      "id": "integrated-resume",
+      "success": true,
+      "latencyMs": 26117,
+      "report": {
+        "generatedAt": "2026-09-27T21:06:43.127Z",
+        "guidanceSource": "openai",
+        "overallScore": 56,
+        "scoreLabel": "Developing Match",
+        "scoreBreakdown": [
+          {
+            "id": "skills",
+            "label": "Skills",
+            "score": 54,
+            "weight": 0.35,
+            "explanation": "Skills are partially supported. Python, JavaScript, React, SQL, and Git are named, with especially strong evidence for JavaScript and React. Python and SQL would be stronger when tied to specific project work, inputs, outputs, or verified results."
+          },
+          {
+            "id": "experience",
+            "label": "Experience",
+            "score": 58,
+            "weight": 0.26,
+            "explanation": "Experience is partially supported by the Flask API, SQLite-backed event records, input validation, two pytest tests, Git-branch collaboration, and a class presentation. There is no direct evidence yet for ML workflows, LLM application delivery, or monitoring after release."
+          },
+          {
+            "id": "tools",
+            "label": "Tools & Tech",
+            "score": 50,
+            "weight": 0.2,
+            "explanation": "Tools evidence includes Flask, SQLite, pytest, Git, React, and JavaScript. Docker, cloud deployment, RAG, and related production tooling are mentioned only as not yet completed, so they should not be presented as current skills."
+          },
+          {
+            "id": "education",
+            "label": "Education",
+            "score": 64,
+            "weight": 0.12,
+            "explanation": "A BSc in Computer Science expected in 2026 aligns with the role's degree requirement. Make the expected graduation date easy to find in the education section."
+          }
+        ],
+        "scoreDisclaimer": "This score estimates resume-to-role alignment. It does not predict interviews, offers, or hiring decisions.",
+        "roleFitSummary": "You are a Developing Match for a Junior AI Engineer role (56/100). Your strongest evidence is in Flask/API development, React, JavaScript, and a completed campus-events project with SQLite, input validation, pytest tests, Git collaboration, and class presentation. The main reason to pause before applying broadly is that the role expects defensible proof of ML fundamentals, LLM application work, evaluation/monitoring, and lightweight CI or MLOps practices. Build one small, finished proof project first, then revise the resume truthfully.",
+        "existingStrengths": [
+          {
+            "title": "API and backend development",
+            "evidence": "Built a Flask API for a campus events application.",
+            "whyItMatters": "The Flask API for the campus events application is direct, concrete evidence that you can build backend API functionality for a web product."
+          },
+          {
+            "title": "JavaScript / TypeScript",
+            "evidence": "Python, JavaScript, React, SQL, Git",
+            "whyItMatters": "JavaScript and React align with the role's web-application requirement and are supported by both the skills list and the React campus-events interface."
+          },
+          {
+            "title": "React front-end development",
+            "evidence": "Python, JavaScript, React, SQL, Git",
+            "whyItMatters": "The React interface for searching campus events shows front-end implementation relevant to user-facing AI product features, even though it is not yet an AI feature."
+          },
+          {
+            "title": "Python programming",
+            "evidence": "Python, JavaScript, React, SQL, Git",
+            "whyItMatters": "Python is a core requirement for the target role. It is listed on the resume, and the Flask/pytest project context is a good place to make its use clearer if accurate."
+          }
+        ],
+        "matchedRequirements": [
+          {
+            "id": "api-backend",
+            "label": "API and backend development",
+            "category": "experience",
+            "strength": "strong",
+            "score": 0.95,
+            "evidence": "Strong direct evidence across 2 mentions.",
+            "evidenceSnippet": "Built a Flask API for a campus events application.",
+            "matchedTerms": [
+              "api",
+              "flask"
+            ]
+          },
+          {
+            "id": "javascript-typescript",
+            "label": "JavaScript / TypeScript",
+            "category": "skills",
+            "strength": "strong",
+            "score": 0.9,
+            "evidence": "Direct mention plus 2 related supporting signals.",
+            "evidenceSnippet": "Python, JavaScript, React, SQL, Git",
+            "matchedTerms": [
+              "javascript",
+              "react"
+            ]
+          },
+          {
+            "id": "react",
+            "label": "React front-end development",
+            "category": "skills",
+            "strength": "strong",
+            "score": 0.85,
+            "evidence": "Strong direct evidence across 2 mentions.",
+            "evidenceSnippet": "Python, JavaScript, React, SQL, Git",
+            "matchedTerms": [
+              "react"
+            ]
+          },
+          {
+            "id": "python",
+            "label": "Python programming",
+            "category": "skills",
+            "strength": "partial",
+            "score": 0.768,
+            "evidence": "Direct mention found, but impact or project context could be clearer.",
+            "evidenceSnippet": "Python, JavaScript, React, SQL, Git",
+            "matchedTerms": [
+              "python"
+            ]
+          },
+          {
+            "id": "sql",
+            "label": "SQL and data manipulation",
+            "category": "skills",
+            "strength": "partial",
+            "score": 0.64,
+            "evidence": "Direct mention found, but impact or project context could be clearer.",
+            "evidenceSnippet": "Python, JavaScript, React, SQL, Git",
+            "matchedTerms": [
+              "sql"
+            ]
+          },
+          {
+            "id": "cloud",
+            "label": "Cloud platforms",
+            "category": "tools",
+            "strength": "partial",
+            "score": 0.64,
+            "evidence": "Direct mention plus 1 related supporting signal.",
+            "evidenceSnippet": "No Docker, cloud deployment, or RAG project yet.",
+            "matchedTerms": [
+              "cloud",
+              "deployment"
+            ]
+          },
+          {
+            "id": "deployment",
+            "label": "Model or app deployment",
+            "category": "experience",
+            "strength": "partial",
+            "score": 0.64,
+            "evidence": "Direct mention found, but impact or project context could be clearer.",
+            "evidenceSnippet": "No Docker, cloud deployment, or RAG project yet.",
+            "matchedTerms": [
+              "deployment"
+            ]
+          },
+          {
+            "id": "degree",
+            "label": "Computer science education",
+            "category": "education",
+            "strength": "partial",
+            "score": 0.64,
+            "evidence": "Direct mention found, but impact or project context could be clearer.",
+            "evidenceSnippet": "BSc Computer Science, expected 2026",
+            "matchedTerms": [
+              "computer science"
+            ]
+          },
+          {
+            "id": "rag",
+            "label": "RAG / embeddings workflow",
+            "category": "tools",
+            "strength": "partial",
+            "score": 0.608,
+            "evidence": "Direct mention found, but impact or project context could be clearer.",
+            "evidenceSnippet": "No Docker, cloud deployment, or RAG project yet.",
+            "matchedTerms": [
+              "rag"
+            ]
+          },
+          {
+            "id": "docker",
+            "label": "Docker / containerisation",
+            "category": "tools",
+            "strength": "partial",
+            "score": 0.544,
+            "evidence": "Direct mention found, but impact or project context could be clearer.",
+            "evidenceSnippet": "No Docker, cloud deployment, or RAG project yet.",
+            "matchedTerms": [
+              "docker"
+            ]
+          }
+        ],
+        "weakRequirements": [
+          {
+            "id": "machine-learning",
+            "label": "Machine learning fundamentals",
+            "category": "skills",
+            "severity": "high",
+            "reason": "No direct resume evidence found for machine learning fundamentals.",
+            "whyItMatters": "The role explicitly asks for machine learning fundamentals and model evaluation, while the resume has no direct evidence of a dataset, model choice, metric, or error analysis.",
+            "gapType": "missing skill",
+            "estimatedEffort": "3-7 days",
+            "action": "Complete one small ML project before claiming this skill. Record the dataset source, model selected, a baseline, one evaluation metric, and several error cases in a README."
+          },
+          {
+            "id": "monitoring",
+            "label": "Monitoring and evaluation",
+            "category": "experience",
+            "severity": "high",
+            "reason": "No direct resume evidence found for monitoring and evaluation.",
+            "whyItMatters": "The role includes evaluating quality and monitoring reliability after release. The resume currently does not show a metric, baseline, observed failure case, or reliability check.",
+            "gapType": "experience gap",
+            "estimatedEffort": "2-5 days",
+            "action": "For the proof project, create a simple evaluation or monitoring note: define a success metric, compare against a baseline, log a few failure cases, and state one improvement idea."
+          },
+          {
+            "id": "mlops",
+            "label": "MLOps / CI-CD for ML",
+            "category": "tools",
+            "severity": "high",
+            "reason": "No direct resume evidence found for mlops / ci-cd for ml.",
+            "whyItMatters": "The role prefers CI/CD or MLOps exposure, but there is no direct resume evidence for automated checks, versioning, or an evaluation workflow.",
+            "gapType": "missing skill",
+            "estimatedEffort": "4-7 days",
+            "action": "Add a lightweight workflow before using MLOps terminology. For example, configure a repository check that runs tests or an evaluation command, and document the expected result."
+          },
+          {
+            "id": "llm",
+            "label": "LLM application development",
+            "category": "skills",
+            "severity": "medium",
+            "reason": "Only indirect evidence found: only one adjacent signal found; evidence is thin..",
+            "whyItMatters": "LLM, prompt-engineering, or retrieval familiarity is central to the role, but current evidence only states that a RAG project has not been built yet.",
+            "gapType": "weak evidence",
+            "estimatedEffort": "5-10 days",
+            "action": "Build a small user-facing LLM workflow with a clear input and output, documented prompts, basic guardrails, an evaluation set or review checklist, and a working demo."
+          }
+        ],
+        "evidenceMap": [
+          {
+            "label": "Machine learning fundamentals",
+            "category": "skills",
+            "strength": "missing",
+            "evidence": "No direct evidence found in the resume text.",
+            "claimStatus": "needs-proof"
+          },
+          {
+            "label": "Python programming",
+            "category": "skills",
+            "strength": "partial",
+            "evidence": "Python, JavaScript, React, SQL, Git",
+            "claimStatus": "reframe"
+          },
+          {
+            "label": "LLM application development",
+            "category": "skills",
+            "strength": "weak",
+            "evidence": "No Docker, cloud deployment, or RAG project yet.",
+            "claimStatus": "reframe"
+          },
+          {
+            "label": "SQL and data manipulation",
+            "category": "skills",
+            "strength": "partial",
+            "evidence": "Python, JavaScript, React, SQL, Git",
+            "claimStatus": "reframe"
+          },
+          {
+            "label": "Cloud platforms",
+            "category": "tools",
+            "strength": "partial",
+            "evidence": "No Docker, cloud deployment, or RAG project yet.",
+            "claimStatus": "reframe"
+          },
+          {
+            "label": "Model or app deployment",
+            "category": "experience",
+            "strength": "partial",
+            "evidence": "No Docker, cloud deployment, or RAG project yet.",
+            "claimStatus": "reframe"
+          },
+          {
+            "label": "Computer science education",
+            "category": "education",
+            "strength": "partial",
+            "evidence": "BSc Computer Science, expected 2026",
+            "claimStatus": "reframe"
+          },
+          {
+            "label": "RAG / embeddings workflow",
+            "category": "tools",
+            "strength": "partial",
+            "evidence": "No Docker, cloud deployment, or RAG project yet.",
+            "claimStatus": "reframe"
+          },
+          {
+            "label": "API and backend development",
+            "category": "experience",
+            "strength": "strong",
+            "evidence": "Built a Flask API for a campus events application.",
+            "claimStatus": "safe"
+          },
+          {
+            "label": "JavaScript / TypeScript",
+            "category": "skills",
+            "strength": "strong",
+            "evidence": "Python, JavaScript, React, SQL, Git",
+            "claimStatus": "safe"
+          },
+          {
+            "label": "React front-end development",
+            "category": "skills",
+            "strength": "strong",
+            "evidence": "Python, JavaScript, React, SQL, Git",
+            "claimStatus": "safe"
+          },
+          {
+            "label": "Docker / containerisation",
+            "category": "tools",
+            "strength": "partial",
+            "evidence": "No Docker, cloud deployment, or RAG project yet.",
+            "claimStatus": "reframe"
+          },
+          {
+            "label": "Monitoring and evaluation",
+            "category": "experience",
+            "strength": "missing",
+            "evidence": "No direct evidence found in the resume text.",
+            "claimStatus": "needs-proof"
+          },
+          {
+            "label": "MLOps / CI-CD for ML",
+            "category": "tools",
+            "strength": "missing",
+            "evidence": "No direct evidence found in the resume text.",
+            "claimStatus": "needs-proof"
+          }
+        ],
+        "priorityActions": [
+          {
+            "title": "Needs proof first: Build and document one small ML project",
+            "detail": "Use a limited scope: one dataset, one model choice, a baseline, one metric, and a short error-case review. Keep the repository reproducible with setup instructions and a README.",
+            "severity": "high",
+            "timeframe": "This week"
+          },
+          {
+            "title": "Needs proof first: Add an evaluation and reliability note",
+            "detail": "Define what success means for the project, record a baseline and metric, capture at least one failure case, and explain a next improvement. This creates evidence for quality evaluation without overstating production monitoring experience.",
+            "severity": "high",
+            "timeframe": "This week"
+          },
+          {
+            "title": "Needs proof first: Create a lightweight automated validation workflow",
+            "detail": "After the project works, add a simple repository workflow that runs tests or the evaluation command. Keep the command and expected output documented in the README before claiming CI/CD or MLOps exposure.",
+            "severity": "high",
+            "timeframe": "This month and next 30 days."
+          }
+        ],
+        "resumeImprovements": [
+          {
+            "status": "reframe",
+            "text": "Keep the education entry explicit: “BSc Computer Science, expected 2026.”"
+          },
+          {
+            "status": "safe",
+            "text": "Place Flask/API work, React, JavaScript, Python, SQL, pytest, and Git near the top, but only where each item is already supported by the resume."
+          },
+          {
+            "status": "needs-proof",
+            "text": "Strengthen Python and SQL evidence by connecting them to the campus-events project if accurate; for example, Python for the Flask API and SQL/SQLite for event records."
+          },
+          {
+            "status": "needs-proof",
+            "text": "Do not list ML fundamentals, LLM development, RAG, Docker, cloud deployment, monitoring, or MLOps as skills yet. Build and document proof first."
+          },
+          {
+            "status": "needs-proof",
+            "text": "Keep the existing collaboration and communication evidence: Git branches with two classmates and a class presentation are relevant to product-team collaboration."
+          },
+          {
+            "status": "needs-proof",
+            "text": "Needs proof first: separate AI frameworks, deployment tools, and developer tools only after each one has visible project evidence."
+          }
+        ],
+        "roadmap": [
+          {
+            "week": "Week 1",
+            "title": "Week 1 — Resume review and skill review",
+            "tasks": [
+              "Keep machine learning fundamentals, monitoring, MLOps, LLM development, Docker, cloud deployment, and RAG out of claimed skills until you have working evidence.",
+              "Move the supported API/backend, JavaScript, and React strengths into the top third of the resume.",
+              "Rewrite the campus-events project using only current facts: problem, implementation, technologies, and a verified result or [add verified result]."
+            ]
+          },
+          {
+            "week": "Week 2",
+            "title": "Week 2 — Build proof",
+            "tasks": [
+              "Build one small ML or LLM-related project with a clear user problem, expected input, expected output, and completion check.",
+              "For ML fundamentals, document the dataset, model choice, baseline, metric, and error cases.",
+              "If choosing an LLM workflow, include documented prompts, basic guardrails, a small evaluation set or checklist, and a user-facing interface."
+            ]
+          },
+          {
+            "week": "Week 3",
+            "title": "Week 3 — Validate, document, and deploy if ready",
+            "tasks": [
+              "Add a README with setup instructions, how to run tests or evaluation, baseline result, one failure case, and one improvement idea.",
+              "Add a lightweight automated check that runs tests or the evaluation command, or document the manual command and expected output if automation is not yet complete.",
+              "Only add a public repository or live-demo link when it is clean, works reliably, and is easy to explain."
+            ]
+          },
+          {
+            "week": "Week 4",
+            "title": "Week 4 — Truthful resume revision and application preparation",
+            "tasks": [
+              "Add the new project only after it is implemented, documented, and explainable end-to-end.",
+              "Revise skills and bullets to name only tools and methods actually used in the finished work.",
+              "Prepare interview stories about the Flask/React project, Git collaboration, class presentation, the proof project’s evaluation, and one current gap you are still addressing."
+            ]
+          }
+        ],
+        "actionRoadmap": [
+          {
+            "period": "Today",
+            "tasks": [
+              "Create a working checklist for one proof project with input, output, metric, failure-case review, test/evaluation command, README, and screenshot.",
+              "Rewrite the existing campus-events project bullet without adding unsupported AI, cloud, Docker, or deployment claims."
+            ]
+          },
+          {
+            "period": "This week",
+            "tasks": [
+              "Finish a small ML project with a dataset, model choice, baseline, metric, and documented error cases.",
+              "Add a basic evaluation note with the metric, baseline, failure cases, and one improvement idea."
+            ]
+          },
+          {
+            "period": "This month",
+            "tasks": [
+              "Build or extend a small LLM workflow with prompts, guardrails, evaluation notes, and a user-facing demo.",
+              "Add a lightweight test or evaluation workflow and document how it is run.",
+              "Clean the repository and prepare a screenshot or short demonstration of the completed functionality."
+            ]
+          },
+          {
+            "period": "Longer term",
+            "tasks": [
+              "Add cloud, Docker, RAG, or MLOps claims only after each has visible and explainable project evidence.",
+              "Reassess the resume after meaningful project completion rather than cosmetic keyword changes.",
+              "Prioritize recurring gaps across junior AI roles over collecting unrelated tools."
+            ]
+          }
+        ],
+        "bulletRewrites": [
+          {
+            "original": "No project bullet was reliably detected.",
+            "status": "reframe",
+            "suggested": "Built a Flask API for a campus events application, storing event records in SQLite; added input validation, two pytest unit tests, and setup documentation. [Add verified result if available.]",
+            "whyStronger": "It retains the stated facts while grouping backend, data, validation, testing, and documentation evidence into one readable project bullet."
+          }
+        ],
+        "interviewPreparation": {
+          "themes": [
+            "Explain the campus-events application end to end: the API, SQLite records, input validation, tests,",
+            "React search interface, and setup documentation.",
+            "Describe how Git branches were used while working with two classmates.",
+            "Explain the project to a non-technical product stakeholder, building on your class presentation.",
+            "Show how you selected a metric, compared a baseline, and investigated errors in the new proof проект"
+          ],
+          "questions": [
+            "Walk me through the Flask API you built and how event records were stored.",
+            "What input validation did you add, and what did your two pytest tests cover?",
+            "How did you collaborate with classmates using Git branches?",
+            "How would you evaluate whether an ML or LLM feature is useful?",
+            "Describe a failure case from your proof project and what you would improve next time."
+          ],
+          "evidenceToPrepare": [
+            "A clean repository or local walkthrough of the campus-events application.",
+            "The setup documentation and the two pytest tests.",
+            "A short explanation of the SQLite data model and React search interface.",
+            "For the new project: dataset or example inputs, model or workflow choice, baseline, metric, error cases, README, and test/evaluation output.",
+            "One concise explanation of what is implemented versus what you are still learning."
+          ],
+          "honestWeaknesses": [
+            "You have not yet built a RAG project, deployed to cloud infrastructure, or used Docker; you are addressing this by completing one scoped, documented proof project.",
+            "Your current evidence for monitoring is limited; you can discuss the evaluation note and automated check you are building rather than claim production monitoring.",
+            "You are early career, but you have completed a full-stack course project, used Git collaboration, and presented technical work to classmates."
+          ],
+          "doNotBluff": [
+            "Do not claim ML fundamentals until you can explain a dataset, model choice, metric, and error cases from completed work.",
+            "Do not claim LLM, RAG, prompt-engineering, cloud, Docker, deployment, CI/CD, monitoring, or MLOps experience based only:",
+            "on plans, coursework intentions, or the statement that these projects have not yet been built.",
+            "Do not imply that two unit tests equal comprehensive test coverage or production reliability monitoring."
+          ]
+        },
+        "finalRecommendation": {
+          "decision": "Build one proof project first",
+          "explanation": "Build one proof project first. Your existing full-stack foundation is relevant, but the current resume does not yet provide enough defensible evidence for the AI-specific requirements that drive this role.",
+          "nextStep": "This week, complete and document a small ML project with a dataset, model choice, baseline, metric, and error cases; then use that artifact as the foundation for an LLM or evaluation-focused extension."
+        }
+      },
+      "fixedPreserved": true,
+      "requestedModel": "gpt-5.6-terra"
+    },
+    {
+      "kind": "guidance",
+      "model": "gpt-4.1-mini",
+      "id": "integrated-resume",
+      "success": true,
+      "latencyMs": 13054,
+      "report": {
+        "generatedAt": "2026-09-27T21:06:43.127Z",
+        "guidanceSource": "openai",
+        "overallScore": 56,
+        "scoreLabel": "Developing Match",
+        "scoreBreakdown": [
+          {
+            "id": "skills",
+            "label": "Skills",
+            "score": 54,
+            "weight": 0.35,
+            "explanation": "You list Python, JavaScript, React, SQL, and Git, which partially matches the job’s skills. Your backend and frontend skills are strong, but you lack direct evidence of machine learning, LLM application, and prompt engineering skills required for this role."
+          },
+          {
+            "id": "experience",
+            "label": "Experience",
+            "score": 58,
+            "weight": 0.26,
+            "explanation": "You have backend API and frontend project experience. However, you have no experience yet with deployment, monitoring, or working with machine learning models directly."
+          },
+          {
+            "id": "tools",
+            "label": "Tools & Tech",
+            "score": 50,
+            "weight": 0.2,
+            "explanation": "Your evidence of tools like Docker, cloud platforms, CI/CD, and MLOps is missing or very limited, which are key technical tools expected in this role."
+          },
+          {
+            "id": "education",
+            "label": "Education",
+            "score": 64,
+            "weight": 0.12,
+            "explanation": "Your current BSc Computer Science degree is relevant and in progress, matching the educational requirement but still partial until completion."
+          }
+        ],
+        "scoreDisclaimer": "This score estimates resume-to-role alignment. It does not predict interviews, offers, or hiring decisions.",
+        "roleFitSummary": "You show solid skills and experience in API and backend development using Flask, as well as frontend development skills with JavaScript and React, aligning well with many requirements of a Junior AI Engineer role. However, critical gaps exist around machine learning fundamentals, LLM application development, deployment, monitoring, and MLOps, which are essential for this position. Building and documenting at least one small machine learning project with evaluation metrics, deployment, and monitoring evidence is needed before your profile fully fits this role.",
+        "existingStrengths": [
+          {
+            "title": "API and backend development",
+            "evidence": "Built a Flask API for a campus events application.",
+            "whyItMatters": "Your Flask API project shows you can develop backend services in Python and work with databases, which is a core technical skill for this job."
+          },
+          {
+            "title": "JavaScript / TypeScript",
+            "evidence": "Python, JavaScript, React, SQL, Git",
+            "whyItMatters": "Your React and JavaScript skills are solid and clearly match frontend development needs in the described role."
+          },
+          {
+            "title": "React front-end development",
+            "evidence": "Python, JavaScript, React, SQL, Git",
+            "whyItMatters": "Your experience working collaboratively on the class project using Git branches demonstrates teamwork and version control skills valued in engineering roles."
+          },
+          {
+            "title": "Python programming",
+            "evidence": "Python, JavaScript, React, SQL, Git",
+            "whyItMatters": "This is credible but improvable evidence for a requirement in the target role."
+          }
+        ],
+        "matchedRequirements": [
+          {
+            "id": "api-backend",
+            "label": "API and backend development",
+            "category": "experience",
+            "strength": "strong",
+            "score": 0.95,
+            "evidence": "Strong direct evidence across 2 mentions.",
+            "evidenceSnippet": "Built a Flask API for a campus events application.",
+            "matchedTerms": [
+              "api",
+              "flask"
+            ]
+          },
+          {
+            "id": "javascript-typescript",
+            "label": "JavaScript / TypeScript",
+            "category": "skills",
+            "strength": "strong",
+            "score": 0.9,
+            "evidence": "Direct mention plus 2 related supporting signals.",
+            "evidenceSnippet": "Python, JavaScript, React, SQL, Git",
+            "matchedTerms": [
+              "javascript",
+              "react"
+            ]
+          },
+          {
+            "id": "react",
+            "label": "React front-end development",
+            "category": "skills",
+            "strength": "strong",
+            "score": 0.85,
+            "evidence": "Strong direct evidence across 2 mentions.",
+            "evidenceSnippet": "Python, JavaScript, React, SQL, Git",
+            "matchedTerms": [
+              "react"
+            ]
+          },
+          {
+            "id": "python",
+            "label": "Python programming",
+            "category": "skills",
+            "strength": "partial",
+            "score": 0.768,
+            "evidence": "Direct mention found, but impact or project context could be clearer.",
+            "evidenceSnippet": "Python, JavaScript, React, SQL, Git",
+            "matchedTerms": [
+              "python"
+            ]
+          },
+          {
+            "id": "sql",
+            "label": "SQL and data manipulation",
+            "category": "skills",
+            "strength": "partial",
+            "score": 0.64,
+            "evidence": "Direct mention found, but impact or project context could be clearer.",
+            "evidenceSnippet": "Python, JavaScript, React, SQL, Git",
+            "matchedTerms": [
+              "sql"
+            ]
+          },
+          {
+            "id": "cloud",
+            "label": "Cloud platforms",
+            "category": "tools",
+            "strength": "partial",
+            "score": 0.64,
+            "evidence": "Direct mention plus 1 related supporting signal.",
+            "evidenceSnippet": "No Docker, cloud deployment, or RAG project yet.",
+            "matchedTerms": [
+              "cloud",
+              "deployment"
+            ]
+          },
+          {
+            "id": "deployment",
+            "label": "Model or app deployment",
+            "category": "experience",
+            "strength": "partial",
+            "score": 0.64,
+            "evidence": "Direct mention found, but impact or project context could be clearer.",
+            "evidenceSnippet": "No Docker, cloud deployment, or RAG project yet.",
+            "matchedTerms": [
+              "deployment"
+            ]
+          },
+          {
+            "id": "degree",
+            "label": "Computer science education",
+            "category": "education",
+            "strength": "partial",
+            "score": 0.64,
+            "evidence": "Direct mention found, but impact or project context could be clearer.",
+            "evidenceSnippet": "BSc Computer Science, expected 2026",
+            "matchedTerms": [
+              "computer science"
+            ]
+          },
+          {
+            "id": "rag",
+            "label": "RAG / embeddings workflow",
+            "category": "tools",
+            "strength": "partial",
+            "score": 0.608,
+            "evidence": "Direct mention found, but impact or project context could be clearer.",
+            "evidenceSnippet": "No Docker, cloud deployment, or RAG project yet.",
+            "matchedTerms": [
+              "rag"
+            ]
+          },
+          {
+            "id": "docker",
+            "label": "Docker / containerisation",
+            "category": "tools",
+            "strength": "partial",
+            "score": 0.544,
+            "evidence": "Direct mention found, but impact or project context could be clearer.",
+            "evidenceSnippet": "No Docker, cloud deployment, or RAG project yet.",
+            "matchedTerms": [
+              "docker"
+            ]
+          }
+        ],
+        "weakRequirements": [
+          {
+            "id": "machine-learning",
+            "label": "Machine learning fundamentals",
+            "category": "skills",
+            "severity": "high",
+            "reason": "No direct resume evidence found for machine learning fundamentals.",
+            "whyItMatters": "This role requires understanding machine learning fundamentals to build and evaluate AI-powered features; without proof, you cannot credibly claim this skill.",
+            "gapType": "missing skill",
+            "estimatedEffort": "3-7 days",
+            "action": "Complete a small machine learning project that includes selecting a dataset, model design, implementing training, and evaluating performance with metrics and error analysis."
+          },
+          {
+            "id": "monitoring",
+            "label": "Monitoring and evaluation",
+            "category": "experience",
+            "severity": "high",
+            "reason": "No direct resume evidence found for monitoring and evaluation.",
+            "whyItMatters": "Monitoring deployed AI applications ensures reliability and quality after release, a key responsibility in the role.",
+            "gapType": "experience gap",
+            "estimatedEffort": "2-5 days",
+            "action": "Add monitoring and evaluation components to your ML project with baseline metrics and notes on failure cases and improvements."
+          },
+          {
+            "id": "mlops",
+            "label": "MLOps / CI-CD for ML",
+            "category": "tools",
+            "severity": "high",
+            "reason": "No direct resume evidence found for mlops / ci-cd for ml.",
+            "whyItMatters": "MLOps including CI/CD and model versioning are critical for production-level AI workflows.",
+            "gapType": "missing skill",
+            "estimatedEffort": "4-7 days",
+            "action": "Implement a simple CI workflow or automated testing/check process for your ML project to demonstrate foundational MLOps skills."
+          },
+          {
+            "id": "llm",
+            "label": "LLM application development",
+            "category": "skills",
+            "severity": "medium",
+            "reason": "Only indirect evidence found: only one adjacent signal found; evidence is thin..",
+            "whyItMatters": "Experience with LLM workflows, prompt engineering, and retrieval are directly related to building AI product features in this role.",
+            "gapType": "weak evidence",
+            "estimatedEffort": "5-10 days",
+            "action": "Build a small LLM-based application with prompts, guardrails, and user demo, and document its functioning and evaluation."
+          }
+        ],
+        "evidenceMap": [
+          {
+            "label": "Machine learning fundamentals",
+            "category": "skills",
+            "strength": "missing",
+            "evidence": "No direct evidence found in the resume text.",
+            "claimStatus": "needs-proof"
+          },
+          {
+            "label": "Python programming",
+            "category": "skills",
+            "strength": "partial",
+            "evidence": "Python, JavaScript, React, SQL, Git",
+            "claimStatus": "reframe"
+          },
+          {
+            "label": "LLM application development",
+            "category": "skills",
+            "strength": "weak",
+            "evidence": "No Docker, cloud deployment, or RAG project yet.",
+            "claimStatus": "reframe"
+          },
+          {
+            "label": "SQL and data manipulation",
+            "category": "skills",
+            "strength": "partial",
+            "evidence": "Python, JavaScript, React, SQL, Git",
+            "claimStatus": "reframe"
+          },
+          {
+            "label": "Cloud platforms",
+            "category": "tools",
+            "strength": "partial",
+            "evidence": "No Docker, cloud deployment, or RAG project yet.",
+            "claimStatus": "reframe"
+          },
+          {
+            "label": "Model or app deployment",
+            "category": "experience",
+            "strength": "partial",
+            "evidence": "No Docker, cloud deployment, or RAG project yet.",
+            "claimStatus": "reframe"
+          },
+          {
+            "label": "Computer science education",
+            "category": "education",
+            "strength": "partial",
+            "evidence": "BSc Computer Science, expected 2026",
+            "claimStatus": "reframe"
+          },
+          {
+            "label": "RAG / embeddings workflow",
+            "category": "tools",
+            "strength": "partial",
+            "evidence": "No Docker, cloud deployment, or RAG project yet.",
+            "claimStatus": "reframe"
+          },
+          {
+            "label": "API and backend development",
+            "category": "experience",
+            "strength": "strong",
+            "evidence": "Built a Flask API for a campus events application.",
+            "claimStatus": "safe"
+          },
+          {
+            "label": "JavaScript / TypeScript",
+            "category": "skills",
+            "strength": "strong",
+            "evidence": "Python, JavaScript, React, SQL, Git",
+            "claimStatus": "safe"
+          },
+          {
+            "label": "React front-end development",
+            "category": "skills",
+            "strength": "strong",
+            "evidence": "Python, JavaScript, React, SQL, Git",
+            "claimStatus": "safe"
+          },
+          {
+            "label": "Docker / containerisation",
+            "category": "tools",
+            "strength": "partial",
+            "evidence": "No Docker, cloud deployment, or RAG project yet.",
+            "claimStatus": "reframe"
+          },
+          {
+            "label": "Monitoring and evaluation",
+            "category": "experience",
+            "strength": "missing",
+            "evidence": "No direct evidence found in the resume text.",
+            "claimStatus": "needs-proof"
+          },
+          {
+            "label": "MLOps / CI-CD for ML",
+            "category": "tools",
+            "strength": "missing",
+            "evidence": "No direct evidence found in the resume text.",
+            "claimStatus": "needs-proof"
+          }
+        ],
+        "priorityActions": [
+          {
+            "title": "Needs proof first: Build a small ML project with documented dataset, model, and evaluation",
+            "detail": "Create a simple supervised learning project with dataset description, model choice, training and evaluation metrics, and documented error cases to prove ML fundamentals.",
+            "severity": "high",
+            "timeframe": "This week"
+          },
+          {
+            "title": "Needs proof first: Add evaluation and monitoring notes to ML project",
+            "detail": "Define baseline results, failure cases, and potential improvements in the README or project documentation.",
+            "severity": "high",
+            "timeframe": "This week"
+          },
+          {
+            "title": "Needs proof first: Add lightweight CI/CD or model evaluation workflow",
+            "detail": "Introduce automation such as GitHub Actions to run tests or model evaluation scripts to demonstrate MLOps skills.",
+            "severity": "high",
+            "timeframe": "This month-long task to improve tooling skills after building the project."
+          }
+        ],
+        "resumeImprovements": [
+          {
+            "status": "reframe",
+            "text": "Reframe: rewrite your project bullet for the Flask API as: 'Developed a Flask API for campus events to enable data storage and retrieval; implemented input validation and unit tests with pytest, improving data integrity and reliability.'"
+          },
+          {
+            "status": "safe",
+            "text": "Safe to move your strongest skills - API/backend development with Flask, JavaScript/React frontend - to the top third of your resume for better impact."
+          },
+          {
+            "status": "needs-proof",
+            "text": "Do not add machine learning skills keywords until you have documented a ML project including dataset, model, and metric evidence to support the claim."
+          },
+          {
+            "status": "needs-proof",
+            "text": "Only mention deployment, monitoring, Docker, cloud, or MLOps after demonstrating these in concrete projects or automation workflows."
+          },
+          {
+            "status": "needs-proof",
+            "text": "Needs proof first: add MLOps only after there is automation, versioning, or an evaluation workflow."
+          },
+          {
+            "status": "needs-proof",
+            "text": "Needs proof first: separate AI frameworks, deployment tools, and developer tools only after each one has visible project evidence."
+          }
+        ],
+        "roadmap": [
+          {
+            "week": "Week 1",
+            "title": "Week 1: Resume fixes and skill review",
+            "tasks": [
+              "Label machine learning fundamentals as 'Needs proof first' and avoid adding unproven claims.",
+              "Use exact skill terms from the job description (e.g., 'Python programming', 'SQL', 'React', 'LLM workflows') in your resume skills section.",
+              "Rewrite your existing project bullet to follow the problem -> action -> technology -> measurable result format to clarify your impact."
+            ]
+          },
+          {
+            "week": "Week 2",
+            "title": "Week 2: Build ML project proof",
+            "tasks": [
+              "Select a manageable ML project with clear inputs and outputs, and focus on correctness and simplicity.",
+              "Add an evaluation table with a baseline metric and document at least one failure case and possible improvements.",
+              "Ensure the project solves a real user problem to enhance relevance."
+            ]
+          },
+          {
+            "week": "Week 3",
+            "title": "Week 3: Deploy and document project proof",
+            "tasks": [
+              "Deploy your ML project or demo on a platform or provide a convincing local runnable version with instructions.",
+              "Add monitoring or evaluation notes, possibly wired to an automated script or GitHub Actions workflow.",
+              "Prepare screenshots or demo links to include as evidence."
+            ]
+          },
+          {
+            "week": "Week 4",
+            "title": "Week 4: Re-score and update resume",
+            "tasks": [
+              "Re-run the KopiBridge assessment with your updated resume and project links to measure improvement.",
+              "Incorporate your ML and deployment proof carefully into your resume with fact-based bullets.",
+              "Prepare an interview story describing your ML project, your choice of model, dataset, evaluation metrics, and lessons learned."
+            ]
+          }
+        ],
+        "actionRoadmap": [
+          {
+            "period": "Today",
+            "tasks": [
+              "Mark ‘Machine learning fundamentals’ as 'Needs proof first' in your notes.",
+              "Rewrite an existing project bullet using the problem -> action -> technology -> result format with facts you already support."
+            ]
+          },
+          {
+            "period": "This week",
+            "tasks": [
+              "Document one ML project clearly defining dataset, model, evaluation metric, and known errors.",
+              "Create a GitHub repository issue or checklist with clear definitions for your project input, output, and success criteria."
+            ]
+          },
+          {
+            "period": "This month",
+            "tasks": [
+              "Enhance your ML project with evaluation tables, baseline and failure examples.",
+              "Document monitoring notes and prepare an interview story about how you handle monitoring and evaluation gaps."
+            ]
+          },
+          {
+            "period": "Longer term",
+            "tasks": [
+              "After significant improvements, rerun the career assessment to track progress.",
+              "Focus on gaining durable AI and devops skills beyond keyword matching for lasting employability."
+            ]
+          }
+        ],
+        "bulletRewrites": [
+          {
+            "original": "No project bullet was reliably detected.",
+            "status": "reframe",
+            "suggested": "Designed and implemented a Flask API for a campus events app, enabling event data storage and retrieval with input validation and unit testing using pytest, enhancing application reliability.",
+            "whyStronger": "This bullet clearly states the problem tackled, the actions taken, technologies used, and benefits, making your contribution and skills easier to evaluate."
+          }
+        ],
+        "interviewPreparation": {
+          "themes": [
+            "Describe your ML project including dataset choice, model used, and evaluation metrics.",
+            "Explain how you implemented validation or testing in your backend API project.",
+            "Discuss your understanding and approach to monitoring application performance and evaluating model/ﬁ",
+            "Explain why MLOps practices matter and how you plan to implement continuous testing or deployment.",
+            "Talk about your collaboration using Git branches and how you communicate technical decisions to non-"
+          ],
+          "questions": [
+            "Can you describe a machine learning project you have worked on? What dataset and model did you use?",
+            "How do you ensure the quality and reliability of your code or models?",
+            "What steps would you take to deploy and monitor an AI-powered web application?",
+            "Can you explain your experience or understanding of LLMs and prompt engineering?",
+            "How have you collaborated with others in a software development project?"
+          ],
+          "evidenceToPrepare": [
+            "README or documentation of an ML project with dataset, model, evaluation metric, and failure cases.",
+            "Code and tests for your Flask API backend project.",
+            "Demo or screenshots of your React frontend application.",
+            "A simple CI test or evaluation script demonstrating your approach to automated checks."
+          ],
+          "honestWeaknesses": [
+            "No direct machine learning project completed yet.",
+            "No deployment or monitoring experience in current projects.",
+            "Limited exposure to MLOps and CI/CD workflows.",
+            "No direct work with LLMs or prompt engineering."
+          ],
+          "doNotBluff": [
+            "Do not claim machine learning skills without a tangible project and evaluation.",
+            "Avoid listing deployment, monitoring, or MLOps skills unless you have demonstrable experience.",
+            "Do not claim experience with LLMs or prompt engineering without a concrete demo or project evidence."
+          ]
+        },
+        "finalRecommendation": {
+          "decision": "Build one proof project first",
+          "explanation": "Your profile currently fits best as an early-career software developer with backend and frontend skills rather than fully meeting the Junior AI Engineer role due to missing core AI and deployment evidence. You should focus on building and documenting one clear small machine learning project with evaluation, deployment, and monitoring proofs to bridge these gaps before applying to this role.",
+          "nextStep": "Start this week by building a small machine learning project with documented dataset, model, and evaluation metric; then gradually add deployment and monitoring evidence over the next weeks to strengthen your resume credibly."
+        }
+      },
+      "fixedPreserved": true,
+      "requestedModel": "gpt-4.1-mini"
+    },
+    {
+      "kind": "interview",
+      "model": "gpt-5.6-terra",
+      "requestedModel": "gpt-5.6-terra",
+      "id": "specific",
+      "success": false,
+      "latencyMs": 7185,
+      "error": {
+        "name": "Error",
+        "message": "Feedback cited words that are not in the answer."
+      }
+    },
+    {
+      "kind": "interview",
+      "model": "gpt-5.6-terra",
+      "requestedModel": "gpt-5.6-terra",
+      "id": "unsupported",
+      "success": false,
+      "latencyMs": 6632,
+      "error": {
+        "name": "Error",
+        "message": "Feedback cited words that are not in the answer."
+      }
+    },
+    {
+      "kind": "interview",
+      "model": "gpt-5.6-terra",
+      "requestedModel": "gpt-5.6-terra",
+      "id": "noisy",
+      "success": false,
+      "latencyMs": 7338,
+      "error": {
+        "name": "Error",
+        "message": "Feedback cited words that are not in the answer."
+      }
+    },
+    {
+      "kind": "interview",
+      "model": "gpt-4.1-mini-2025-04-14",
+      "id": "specific",
+      "success": true,
+      "latencyMs": 3259,
+      "feedback": {
+        "summary": "The candidate gave a concise overview of the Flask API project, mentioning key features like input validation, unit tests, SQLite storage, and teamwork using Git branches. However, details on the API design, data schema, or how event records were specifically stored were limited. The candidate also noted the project is not yet deployed, which is relevant for this role.",
+        "strengths": [
+          {
+            "quote": "Built a Flask API for campus events",
+            "explanation": "This matches the resume evidence exactly and shows hands-on backend API development experience relevant to the role."
+          },
+          {
+            "quote": "added input validation and two unit tests using pytest",
+            "explanation": "Highlights attention to data quality and testing, reinforcing coding discipline and backend robustness."
+          },
+          {
+            "quote": "events were stored in SQLite",
+            "explanation": "Specifies the storage technology used, which aligns with resume skills in SQL and Python and expresses ability to manage persistence."
+          }
+        ],
+        "improvements": [
+          {
+            "quote": "I have not deployed the project to a cloud platform yet",
+            "advice": "For this role, preparing and deploying the API to a cloud environment or at least explaining deployment plans would strengthen your answer and demonstrate practical readiness."
+          },
+          {
+            "quote": "I worked with two classmates using Git branches",
+            "advice": "Expand on collaboration details or your contribution specifics to provide more insight into your teamwork and version control skills."
+          },
+          {
+            "quote": "I would prepare the repository and test results to explain my contribution",
+            "advice": "Before interviews, have these materials ready to share or describe concretely to better support your claims and show professionalism."
+          }
+        ],
+        "nextSteps": [
+          "Enhance the project by deploying the Flask API on a cloud platform to demonstrate end-to-end capabilities.",
+          "Prepare a brief documentation or diagram explaining your Flask API endpoints and database schema for clearer explanation during interviews.",
+          "Include concrete examples of your collaboration workflow and how you handled version control with Git branches."
+        ],
+        "cautions": [
+          "Claims about deployment and collaboration are limited and need confirmation or elaboration in future interviews.",
+          "Avoid overstating skills or experience beyond what is evidenced in your resume or project artifacts.",
+          "Ensure any supplementary materials you mention (test results, repository links) are ready and accurate to avoid undermining trust."
+        ]
+      },
+      "usage": {
+        "input_tokens": 1450,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 428,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 1878
+      },
+      "question": "Walk me through the Flask API you built and how event records were stored.",
+      "transcript": "I built a Flask API for campus events. I added input validation and two unit tests using pytest. The events were stored in SQLite. I worked with two classmates using Git branches. I have not deployed the project to a cloud platform yet. I would prepare the repository and test results to explain my contribution.",
+      "quotesVerified": true,
+      "requestedModel": "gpt-4.1-mini"
+    },
+    {
+      "kind": "interview",
+      "model": "gpt-4.1-mini",
+      "requestedModel": "gpt-4.1-mini",
+      "id": "unsupported",
+      "success": false,
+      "latencyMs": 2616,
+      "error": {
+        "name": "Error",
+        "message": "Feedback cited words that are not in the answer."
+      }
+    },
+    {
+      "kind": "interview",
+      "model": "gpt-4.1-mini",
+      "requestedModel": "gpt-4.1-mini",
+      "id": "noisy",
+      "success": false,
+      "latencyMs": 3193,
+      "error": {
+        "name": "Error",
+        "message": "Feedback cited words that are not in the answer."
+      }
+    },
+    {
+      "kind": "interview-grounded-v2",
+      "model": "gpt-5.6-terra",
+      "id": "specific",
+      "success": true,
+      "latencyMs": 9667,
+      "feedback": {
+        "summary": "This is a clear, honest overview of the project, but it is too high-level for a walkthrough. Add the request flow, SQLite schema/access pattern, validation examples, and what the two tests covered.",
+        "strengths": [
+          {
+            "quote": "I built a Flask API for campus events.",
+            "explanation": "This directly matches the resume’s supported backend-project evidence and gives a relevant starting point."
+          },
+          {
+            "quote": "The events were stored in SQLite.",
+            "explanation": "This answers the storage portion directly and is consistent with the resume listing SQL, though the specific SQLite implementation is not documented in the supplied evidence."
+          },
+          {
+            "quote": "I have not deployed the project to a cloud platform yet.",
+            "explanation": "This is a useful, truthful boundary and avoids overstating deployment experience."
+          }
+        ],
+        "improvements": [
+          {
+            "quote": "I added input validation and two unit tests using pytest.",
+            "advice": "Specify one validation rule and the behaviors tested—for example, invalid input rejection and successful event creation—only if accurate. pytest and the test count need verification because they are absent from the supplied resume evidence."
+          },
+          {
+            "quote": "The events were stored in SQLite.",
+            "advice": "Explain how Flask interacted with SQLite: name the event fields, whether you used SQL queries or an ORM, and describe a create/read flow. Those details need verification because the resume supports SQL generally, not this exact design."
+          },
+          {
+            "quote": "I worked with two classmates using Git branches.",
+            "advice": "Connect collaboration to your individual contribution: state the endpoint, validation, database, or tests you owned. Team size and branch workflow need verification because they are not in the supplied resume evidence."
+          }
+        ],
+        "nextSteps": [
+          "Use a simple sequence: project purpose → Flask endpoints/request flow → validation → SQLite data model and read/write flow → tests → your contribution → deployment boundary.",
+          "Prepare a truthful revision such as: “I built a Flask API for campus events. A client sent requests to the relevant endpoint, the API validated the input, and event data was saved to SQLite. I tested [specific behaviors].” Fill in the endpoint, fields, and test behaviors only from the repository.",
+          "Bring the repository or test output if asked, since you said you would “prepare the repository and test results.”"
+        ],
+        "cautions": [
+          "Do not imply cloud deployment, Docker, ML, RAG, monitoring, or CI/CD experience; none is supported here.",
+          "Claims about pytest, two tests, SQLite implementation details, teammates, and Git branches are not present in the supplied resume evidence and should be verified before repeating them.",
+          "Avoid saying only “stored in SQLite”; an interviewer will likely ask about the schema, queries/ORM, and error handling."
+        ]
+      },
+      "usage": {
+        "input_tokens": 1576,
+        "input_tokens_details": {
+          "cache_write_tokens": 1573,
+          "cached_tokens": 0
+        },
+        "output_tokens": 541,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 2117
+      },
+      "question": "Walk me through the Flask API you built and how event records were stored.",
+      "transcript": "I built a Flask API for campus events. I added input validation and two unit tests using pytest. The events were stored in SQLite. I worked with two classmates using Git branches. I have not deployed the project to a cloud platform yet. I would prepare the repository and test results to explain my contribution.",
+      "quotesVerified": true,
+      "requestedModel": "gpt-5.6-terra"
+    },
+    {
+      "kind": "interview-grounded-v2",
+      "model": "gpt-5.6-terra",
+      "id": "unsupported",
+      "success": true,
+      "latencyMs": 6638,
+      "feedback": {
+        "summary": "Your answer is truthful and shows a concrete learning plan, but it does not answer the interviewer’s request to explain the Flask API or how event records were stored. Lead with the API’s purpose, routes, request/response flow, and storage design; mention Docker only briefly at the end if relevant.",
+        "strengths": [
+          {
+            "quote": "I built a Flask application for campus events.",
+            "explanation": "This aligns with the resume evidence that you built a Flask API for a campus events application."
+          },
+          {
+            "quote": "I have not used either in a completed project, so I cannot claim that experience.",
+            "explanation": "This is appropriately honest about Docker and cloud deployment rather than overstating experience."
+          },
+          {
+            "quote": "My next step is to containerize the application, test the local setup, and document the commands.",
+            "explanation": "This names concrete future artifacts: a containerized setup, local test, and documentation."
+          }
+        ],
+        "improvements": [
+          {
+            "quote": "I would like to learn Docker and cloud deployment next.",
+            "advice": "This shifts away from the question. Replace it with the API walkthrough: what endpoints existed, what each accepted or returned, and how the front end used them."
+          },
+          {
+            "quote": "I built a Flask application for campus events.",
+            "advice": "Expand this claim with only details you can verify: for example, describe the event fields, route names, validation, error handling, and the request-to-response flow."
+          },
+          {
+            "quote": "I have not used either in a completed project, so I cannot claim that experience.",
+            "advice": "Keep this only if the interviewer asks about deployment. It does not explain record storage."
+          }
+        ],
+        "nextSteps": [
+          "Prepare a 45–60 second answer structured as: purpose of the API, one or two routes, event-record fields, storage mechanism, and how records were retrieved or updated.",
+          "Verify the storage details before stating them. The supplied resume supports that you built the Flask API and lists SQL, but it does not establish whether records used SQL, a particular database, files, or in-memory storage.",
+          "If accurate, bring a concrete artifact to discuss: a route example, schema/model, SQL query, or README section documenting local setup."
+        ],
+        "cautions": [
+          "Do not claim Docker, cloud deployment, a database product, CRUD endpoints, authentication, testing, or a particular storage schema unless you can verify it from the project.",
+          "Listing SQL on the resume is not proof that this specific Flask app stored event records in SQL."
+        ]
+      },
+      "usage": {
+        "input_tokens": 1564,
+        "input_tokens_details": {
+          "cache_write_tokens": 1561,
+          "cached_tokens": 0
+        },
+        "output_tokens": 500,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 2064
+      },
+      "question": "Walk me through the Flask API you built and how event records were stored.",
+      "transcript": "I built a Flask application for campus events. I would like to learn Docker and cloud deployment next. I have not used either in a completed project, so I cannot claim that experience. My next step is to containerize the application, test the local setup, and document the commands.",
+      "quotesVerified": true,
+      "requestedModel": "gpt-5.6-terra"
+    },
+    {
+      "kind": "interview-grounded-v2",
+      "model": "gpt-5.6-terra",
+      "id": "noisy",
+      "success": true,
+      "latencyMs": 8302,
+      "feedback": {
+        "summary": "The answer is accurate and appropriately cautious, but it does not answer the core request: how the Flask API worked or how event records were stored. Add a brief request flow and the actual storage approach, only if you can verify both in the repository.",
+        "strengths": [
+          {
+            "quote": "My role was building the search form and connecting it to our Flask API.",
+            "explanation": "This clearly distinguishes your front-end contribution and describes the integration point with the API. React is supported by the resume, and the resume also supports that the project included a Flask API."
+          },
+          {
+            "quote": "I can show the repository and explain the request validation.",
+            "explanation": "Offering a concrete artifact is useful. It gives the interviewer a way to verify implementation details rather than relying on broad claims."
+          },
+          {
+            "quote": "We did not measure performance, so I would not claim a speed improvement.",
+            "explanation": "This avoids inventing an unsupported metric or outcome. That is the right approach when no performance measurement was recorded."
+          }
+        ],
+        "improvements": [
+          {
+            "quote": "I created a React interface for searching campus events.",
+            "advice": "Open with the Flask API rather than the interface, since the question asks specifically about the API and record storage. For example: “The application had a Flask API that handled event-search requests; I connected the React search form to it.” Only describe endpoints if you can verify them in the repository."
+          },
+          {
+            "quote": "My role was building the search form and connecting it to our Flask API.",
+            "advice": "Explain one end-to-end request: what the client sent, how Flask validated it, and what response the UI received. The current answer names validation but gives no implementation detail."
+          },
+          {
+            "quote": "I can show the repository and explain the request validation.",
+            "advice": "State the validation behavior in the answer itself—for example, required fields, accepted query parameters, invalid-input handling, or response status—only if the code confirms it. Request-validation details are absent from the supplied resume evidence and need verification."
+          }
+        ],
+        "nextSteps": [
+          "Inspect the repository and prepare a 30–45 second walkthrough: React form → Flask route → validation → event lookup → JSON response → displayed results.",
+          "Verify and name the event-record storage mechanism exactly (for example, SQL database, file, in-memory list, or external service). The supplied resume lists SQL but does not establish that this project stored records in SQL.",
+          "Bring one concrete artifact to the interview: the route handler, schema/table definition, seed data, or request/response example."
+        ],
+        "cautions": [
+          "Do not imply that you built the Flask API alone: the answer says your role was the search form and API connection, while the resume only establishes that a Flask API was built for the application.",
+          "Do not claim a database, schema, CRUD operations, endpoint names, validation rules, or performance results unless the repository verifies them.",
+          "The answer contains no AI/ML implementation detail; do not frame this project as an AI feature without separate evidence."
+        ]
+      },
+      "usage": {
+        "input_tokens": 1546,
+        "input_tokens_details": {
+          "cache_write_tokens": 1543,
+          "cached_tokens": 0
+        },
+        "output_tokens": 603,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 2149
+      },
+      "question": "Walk me through the Flask API you built and how event records were stored.",
+      "transcript": "I created a React interface for searching campus events. My role was building the search form and connecting it to our Flask API. I can show the repository and explain the request validation. We did not measure performance, so I would not claim a speed improvement.",
+      "quotesVerified": true,
+      "requestedModel": "gpt-5.6-terra"
+    },
+    {
+      "kind": "interview-grounded-v2",
+      "model": "gpt-4.1-mini-2025-04-14",
+      "id": "specific",
+      "success": true,
+      "latencyMs": 3472,
+      "feedback": {
+        "summary": "The candidate clearly describes building a Flask API for campus events with SQLite storage, input validation, unit tests using pytest, and collaboration via Git branches. However, deployment or cloud experience is not yet present, and more detailed explanation of the API endpoints and data handling could strengthen the answer.",
+        "strengths": [
+          {
+            "quote": "I built a Flask API for campus events.",
+            "explanation": "This is direct evidence of backend API development matching the resume and role requirement."
+          },
+          {
+            "quote": "I added input validation and two unit tests using pytest.",
+            "explanation": "Shows attention to input correctness and testing practices, adding robustness to the API."
+          },
+          {
+            "quote": "The events were stored in SQLite.",
+            "explanation": "Specifies the database used, aligning with SQL skills-listed in resume."
+          }
+        ],
+        "improvements": [
+          {
+            "quote": "I worked with two classmates using Git branches.",
+            "advice": "Expand on how Git branching helped collaboration or workflow, to show teamwork and version control skills."
+          },
+          {
+            "quote": "I have not deployed the project to a cloud platform yet.",
+            "advice": "Mention future plans to deploy or steps taken to prepare deployment; deployment is relevant for the target role."
+          },
+          {
+            "quote": "I would prepare the repository and test results to explain my contribution.",
+            "advice": "Provide concrete examples or a brief overview of API endpoints, data schema, or test coverage to better demonstrate your contribution."
+          }
+        ],
+        "nextSteps": [
+          "Prepare a concise explanation of the API functionality including key endpoints and data flow.",
+          "Document the test cases and input validation added, highlighting how they improve API reliability.",
+          "Show familiarity with deployment by preparing a plan or prototype deployment on a cloud platform like Heroku or AWS Elastic Beanstalk, even if not yet completed."
+        ],
+        "cautions": [
+          "Avoid vague statements about future plans without evidence of progress or preparation.",
+          "Do not overstate cloud or deployment experience that is not yet present in your projects.",
+          "Ensure claims about collaboration and testing are supported with concrete examples or artifacts when possible."
+        ]
+      },
+      "usage": {
+        "input_tokens": 1578,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 389,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 1967
+      },
+      "question": "Walk me through the Flask API you built and how event records were stored.",
+      "transcript": "I built a Flask API for campus events. I added input validation and two unit tests using pytest. The events were stored in SQLite. I worked with two classmates using Git branches. I have not deployed the project to a cloud platform yet. I would prepare the repository and test results to explain my contribution.",
+      "quotesVerified": true,
+      "requestedModel": "gpt-4.1-mini"
+    },
+    {
+      "kind": "interview-grounded-v2",
+      "model": "gpt-4.1-mini-2025-04-14",
+      "id": "unsupported",
+      "success": true,
+      "latencyMs": 9148,
+      "feedback": {
+        "summary": "The candidate clearly states they built a Flask application for campus events, confirming backend API experience aligned with their resume evidence. However, they do not explain how event records were stored, nor any details about the API's data handling. They also acknowledge lacking experience with Docker and cloud deployment at this stage and express a desire to learn these next. The answer does not fully address the question regarding data storage or API internals, providing limited insight into technical depth.",
+        "strengths": [
+          {
+            "quote": "I built a Flask application for campus events.",
+            "explanation": "This confirms concrete experience building the Flask API as stated on the resume, demonstrating relevant backend development capability."
+          },
+          {
+            "quote": "I would like to learn Docker and cloud deployment next.",
+            "explanation": "Shows proactivity and planning for skill development in deployment technologies valuable to the role."
+          },
+          {
+            "quote": "My next step is to containerize the application, test the local setup, and document the commands.",
+            "explanation": "Indicates a systematic approach and intention to improve the project with containerization and documentation."
+          }
+        ],
+        "improvements": [
+          {
+            "quote": "I built a Flask application for campus events.",
+            "advice": "Expand your answer to include how event records were stored in the application, such as the database used, schema, or data workflow, to fully address the question."
+          },
+          {
+            "quote": "I would like to learn Docker and cloud deployment next.",
+            "advice": "Avoid stating lack of experience without accompanying technical detail; instead, focus on any preliminary exposure or conceptual understanding you have, and how you plan to gain practical skills."
+          },
+          {
+            "quote": "I have not used either in a completed project, so I cannot claim that experience.",
+            "advice": "Try to frame gaps positively by discussing related skills or small experiments you have done rather than only mentioning absence of experience."
+          }
+        ],
+        "nextSteps": [
+          "Add a clear explanation of the data storage approach used in your Flask API, specifying technologies, structure, and any data access patterns.",
+          "Begin a small side project or tutorial to containerize your Flask app using Docker, documenting commands and learning outcomes.",
+          "Create a README update or brief technical note describing your API endpoints, data model, and deployment plans to demonstrate depth and clarity."
+        ],
+        "cautions": [
+          "Avoid vague or incomplete answers that omit key technical details asked for in the question.",
+          "Do not highlight current lack of experience without emphasizing proactive learning or interim steps.",
+          "Ensure your answer aligns closely with resume evidence and expands it with concrete technical information rather than general statements."
+        ]
+      },
+      "usage": {
+        "input_tokens": 1566,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 490,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 2056
+      },
+      "question": "Walk me through the Flask API you built and how event records were stored.",
+      "transcript": "I built a Flask application for campus events. I would like to learn Docker and cloud deployment next. I have not used either in a completed project, so I cannot claim that experience. My next step is to containerize the application, test the local setup, and document the commands.",
+      "quotesVerified": true,
+      "requestedModel": "gpt-4.1-mini"
+    },
+    {
+      "kind": "interview-grounded-v2",
+      "model": "gpt-4.1-mini-2025-04-14",
+      "id": "noisy",
+      "success": true,
+      "latencyMs": 3993,
+      "feedback": {
+        "summary": "The candidate described their role focusing on the React search interface and connecting it to the Flask API but provided little detail about the API itself or how event records were stored. The answer lacked concrete technical explanation about the backend or data storage design.",
+        "strengths": [
+          {
+            "quote": "I created a React interface for searching campus events.",
+            "explanation": "Shows involvement in frontend development aligned with resume evidence of React interface for campus events."
+          },
+          {
+            "quote": "My role was building the search form and connecting it to our Flask API.",
+            "explanation": "Indicates responsibility for integrating frontend with the backend Flask API, consistent with resume."
+          },
+          {
+            "quote": "I can show the repository and explain the request validation.",
+            "explanation": "Demonstrates readiness to share concrete artifacts and discuss API request validation."
+          }
+        ],
+        "improvements": [
+          {
+            "quote": "We did not measure performance, so I would not claim a speed improvement.",
+            "advice": "Avoid adding performance claims unless supported by data; better to explain API architecture or data storage approach."
+          },
+          {
+            "quote": "My role was building the search form and connecting it to our Flask API.",
+            "advice": "Expand details about the Flask API design, routes, data models, and how event records were stored to address the question fully."
+          },
+          {
+            "quote": "I created a React interface for searching campus events.",
+            "advice": "Focus the answer more on backend API details rather than frontend interface, as the question targets the API and storage specifics."
+          }
+        ],
+        "nextSteps": [
+          "Provide a clear description of the Flask API endpoints, data models, and storage mechanism (e.g., database schema or ORM used).",
+          "Prepare to demonstrate or walk through key code snippets from the repository showing request validation and data storage logic.",
+          "Practice elaborating backend implementation details rather than emphasizing front-end roles when asked about APIs and data storage."
+        ],
+        "cautions": [
+          "Do not speculate or claim improvements (like performance gains) without evidence or measurement.",
+          "Do not omit backend architecture details that are relevant to the question; interviewers want concrete technical insights.",
+          "Verify all claims against your code or documentation before sharing in interviews to ensure accuracy."
+        ]
+      },
+      "usage": {
+        "input_tokens": 1548,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 414,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 1962
+      },
+      "question": "Walk me through the Flask API you built and how event records were stored.",
+      "transcript": "I created a React interface for searching campus events. My role was building the search form and connecting it to our Flask API. I can show the repository and explain the request validation. We did not measure performance, so I would not claim a speed improvement.",
+      "quotesVerified": true,
+      "requestedModel": "gpt-4.1-mini"
+    }
+  ]
+}

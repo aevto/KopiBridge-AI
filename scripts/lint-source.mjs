@@ -15,8 +15,8 @@ const bannedPatterns = [
     pattern: /\/api\/explain/,
   },
   {
-    label: "Stage 1 must not require OPENAI_API_KEY.",
-    pattern: /OPENAI_API_KEY/,
+    label: "OpenAI secrets must never use a public environment variable.",
+    pattern: /NEXT_PUBLIC_OPENAI_(?:API_)?KEY/,
   },
 ];
 
@@ -54,6 +54,22 @@ for (const file of files) {
     if (rule.pattern.test(source)) {
       failures.push(`${relativeFile}: ${rule.label}`);
     }
+  }
+
+  if (
+    /OPENAI_API_KEY/.test(source) &&
+    !["lib/openai-guidance.ts", "lib/openai-media.ts"].includes(relativeFile)
+  ) {
+    failures.push(
+      `${relativeFile}: OPENAI_API_KEY may only be accessed by the server-only OpenAI module.`,
+    );
+  }
+
+  if (
+    ["lib/openai-guidance.ts", "lib/openai-media.ts"].includes(relativeFile) &&
+    !source.includes('import "server-only"')
+  ) {
+    failures.push(`${relativeFile}: OpenAI modules must be server-only.`);
   }
 
   const sourceFile = ts.createSourceFile(

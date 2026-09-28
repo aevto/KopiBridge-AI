@@ -171,7 +171,7 @@ export default function HomePage() {
               number="02"
               icon={<Fingerprint />}
               title="Check claim safety"
-              text="The deterministic engine maps requirement evidence without inventing experience or metrics."
+              text="The local engine fixes the score and evidence labels; AI then refines the guidance without inventing experience or metrics."
             />
             <Step
               number="03"
@@ -200,7 +200,7 @@ export default function HomePage() {
             />
             <PrivacyPoint
               title="Text is minimised"
-              text="Resume and role text is processed for the request, then only the structured report is saved."
+              text="Your PDF stays in the browser. Extracted text is processed for the request, then only the private structured report is saved."
             />
             <PrivacyPoint
               title="Reports stay private"

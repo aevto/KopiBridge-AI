@@ -20,6 +20,7 @@ const progressMessages = [
   "Reading role requirements",
   "Checking resume evidence",
   "Prioritising proof gaps",
+  "Refining evidence-led guidance",
   "Building your action plan",
   "Saving the private report",
 ];
@@ -41,15 +42,6 @@ export function AnalysisWorkspace({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [progressIndex, setProgressIndex] = useState(0);
   const idempotencyKey = useRef(crypto.randomUUID());
-
-  useEffect(() => {
-    if (!jobDescription.trim() || metadataTouched) return;
-    const detected = detectRoleAndCompany(jobDescription);
-    setTargetRole(
-      detected.targetRole === "Target role" ? "" : detected.targetRole,
-    );
-    setCompany(detected.company);
-  }, [jobDescription, metadataTouched]);
 
   useEffect(() => {
     if (!isSubmitting) return;
@@ -174,8 +166,9 @@ export function AnalysisWorkspace({
             Compare evidence, not just keywords
           </h1>
           <p className="mt-3 max-w-2xl text-sm leading-6 text-espresso-500">
-            Your PDF stays in the browser. Only the completed structured report
-            is saved to your private history.
+            Text-based PDFs are read on your device. Scanned pages can be sent
+            to AI with your consent. Review the extracted text, then compare it
+            with the role. Your completed report is saved privately.
           </p>
         </div>
         <div className="text-sm font-semibold text-espresso-700">
@@ -219,6 +212,15 @@ export function AnalysisWorkspace({
             onChange={(value) => {
               setJobDescription(value);
               setError("");
+              if (!metadataTouched) {
+                const detected = detectRoleAndCompany(value);
+                setTargetRole(
+                  detected.targetRole === "Target role"
+                    ? ""
+                    : detected.targetRole,
+                );
+                setCompany(detected.company);
+              }
             }}
             onLoadDemoJobDescription={loadDemoJob}
           />

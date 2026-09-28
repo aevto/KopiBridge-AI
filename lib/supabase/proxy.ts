@@ -27,6 +27,26 @@ export async function updateSession(request: NextRequest) {
     },
   });
 
-  await supabase.auth.getClaims();
+  const { data } = await supabase.auth.getClaims();
+  const protectedPath = ["/dashboard", "/analysis", "/history", "/settings"].some(
+    (prefix) =>
+      request.nextUrl.pathname === prefix ||
+      request.nextUrl.pathname.startsWith(`${prefix}/`),
+  );
+
+  if (!data?.claims && protectedPath) {
+    const loginUrl = request.nextUrl.clone();
+    const returnTo = `${request.nextUrl.pathname}${request.nextUrl.search}`;
+    loginUrl.pathname = "/login";
+    loginUrl.search = "";
+    loginUrl.searchParams.set("next", returnTo);
+
+    const redirectResponse = NextResponse.redirect(loginUrl);
+    response.cookies.getAll().forEach((cookie) =>
+      redirectResponse.cookies.set(cookie),
+    );
+    return redirectResponse;
+  }
+
   return response;
 }

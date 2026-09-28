@@ -1,9 +1,12 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
+import { newPasswordSchema } from "@/lib/validation";
 
 export function UpdatePasswordForm() {
+  const router = useRouter();
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [isPending, setIsPending] = useState(false);
@@ -11,13 +14,19 @@ export function UpdatePasswordForm() {
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setError("");
-    if (password.length < 8) {
-      setError("Password must be at least 8 characters.");
+    const parsedPassword = newPasswordSchema.safeParse(password);
+    if (!parsedPassword.success) {
+      setError(
+        parsedPassword.error.issues[0]?.message ??
+          "Choose a stronger password.",
+      );
       return;
     }
     setIsPending(true);
     const supabase = createClient();
-    const { error: updateError } = await supabase.auth.updateUser({ password });
+    const { error: updateError } = await supabase.auth.updateUser({
+      password: parsedPassword.data,
+    });
     if (updateError) {
       setError(
         "The password could not be updated. Request a fresh reset link and try again.",
@@ -25,7 +34,8 @@ export function UpdatePasswordForm() {
       setIsPending(false);
       return;
     }
-    window.location.assign("/dashboard");
+    router.replace("/dashboard");
+    router.refresh();
   }
 
   return (
@@ -39,9 +49,14 @@ export function UpdatePasswordForm() {
           autoComplete="new-password"
           value={password}
           onChange={(event) => setPassword(event.target.value)}
+          minLength={8}
+          aria-describedby="new-password-hint"
           required
           className="mt-2 w-full rounded-md border border-espresso-200 bg-white px-4 py-3 outline-none focus:border-sage-600 focus:ring-2 focus:ring-sage-100"
         />
+        <p id="new-password-hint" className="mt-2 text-sm text-espresso-500">
+          Use 8 or more characters with at least one letter and one number.
+        </p>
       </label>
       {error ? (
         <p

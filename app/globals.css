@@ -91,6 +91,7 @@ textarea {
   }
 
   body * {
+    background-color: transparent !important;
     print-color-adjust: exact;
     -webkit-print-color-adjust: exact;
   }

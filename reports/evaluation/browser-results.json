@@ -1,0 +1,26 @@
+{
+  "date": "2026-09-28T07:42:36.063Z",
+  "checks": {
+    "unauthenticated": 401,
+    "textPdf": true,
+    "vision": true,
+    "remainingAfterAnalysis": 2,
+    "feedbackModel": "gpt-5.6-terra",
+    "persistence": true,
+    "printWiring": true,
+    "noOverflowWidths": [
+      390,
+      768,
+      1440
+    ],
+    "mediaDoesNotSpendAnalysisCredit": true,
+    "ownerIsolation": true,
+    "concurrentDuplicateStatuses": [
+      201,
+      409
+    ],
+    "fourthAnalysisBlocked": true,
+    "deletion": true,
+    "consoleErrors": []
+  }
+}

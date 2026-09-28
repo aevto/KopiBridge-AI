@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Database, FileX2, ShieldCheck } from "lucide-react";
+import { BrainCircuit, Database, FileX2, ShieldCheck } from "lucide-react";
 import { requireUser } from "@/lib/auth";
 
 export default async function SettingsPage() {
@@ -25,12 +25,17 @@ export default async function SettingsPage() {
         <TrustRow
           icon={<FileX2 />}
           title="Uploaded files are temporary"
-          text="PDF extraction happens in your browser. The uploaded file is not sent to or retained by KopiBridge."
+          text="Text PDFs are read in your browser. With consent, scanned pages and interview audio are processed by OpenAI. KopiBridge does not save the media."
         />
         <TrustRow
           icon={<Database />}
-          title="Only structured reports are saved"
-          text="We retain target-role metadata and the generated structured report so you can revisit history. Full resume and job-description text are not stored."
+          title="Private reports and reviewed practice"
+          text="History retains reports, evidence snippets, and any interview answer and feedback you choose to save. Full resume and job-description text are not stored. Deleting a report also deletes its interview practice."
+        />
+        <TrustRow
+          icon={<BrainCircuit />}
+          title="AI refines guidance, not evidence"
+          text="The local engine fixes scores and claim labels. When available, OpenAI improves the written actions using redacted, bounded text and does not replace those results."
         />
         <TrustRow
           icon={<ShieldCheck />}

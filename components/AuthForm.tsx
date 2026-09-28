@@ -1,13 +1,41 @@
 "use client";
 
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { FormEvent, useState } from "react";
 import { ArrowRight, LoaderCircle } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
-import { authSchema } from "@/lib/validation";
+import { authSchema, signupSchema } from "@/lib/validation";
+
+function getSignupErrorMessage(error: { code?: string; message?: string }) {
+  const code = error.code ?? "";
+  const message = error.message?.toLowerCase() ?? "";
+
+  if (code === "weak_password" || message.includes("password")) {
+    return "Use at least 8 characters, including a letter and a number.";
+  }
+
+  if (
+    code === "user_already_exists" ||
+    code === "email_exists" ||
+    message.includes("already registered")
+  ) {
+    return "An account may already exist for this email. Try logging in or resetting your password.";
+  }
+
+  if (code === "over_email_send_rate_limit" || message.includes("rate limit")) {
+    return "Too many confirmation emails were requested. Wait a few minutes, then try again.";
+  }
+
+  if (code === "signup_disabled") {
+    return "New account creation is temporarily unavailable.";
+  }
+
+  return "We could not create the account right now. Please try again.";
+}
 
 export function AuthForm({ mode }: { mode: "login" | "signup" }) {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -25,7 +53,8 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
     setError("");
     setMessage("");
 
-    const parsed = authSchema.safeParse({ email, password });
+    const schema = mode === "signup" ? signupSchema : authSchema;
+    const parsed = schema.safeParse({ email, password });
     if (!parsed.success) {
       setError(parsed.error.issues[0]?.message ?? "Check your details.");
       return;
@@ -43,7 +72,8 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
           setError("We could not sign you in. Check your email and password.");
           return;
         }
-        window.location.assign(next);
+        router.replace(next);
+        router.refresh();
       } else {
         const { data, error: signUpError } = await supabase.auth.signUp({
           ...parsed.data,
@@ -52,13 +82,12 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
           },
         });
         if (signUpError) {
-          setError(
-            "We could not create the account. Use a password with at least eight characters, including letters and numbers.",
-          );
+          setError(getSignupErrorMessage(signUpError));
           return;
         }
         if (data.session) {
-          window.location.assign(next);
+          router.replace(next);
+          router.refresh();
         } else {
           setMessage(
             "Check your inbox to confirm your email, then return to sign in.",
@@ -111,8 +140,15 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
           onChange={(event) => setPassword(event.target.value)}
           className="mt-2 w-full rounded-md border border-espresso-200 bg-white px-4 py-3 text-espresso-900 outline-none transition placeholder:text-espresso-300 focus:border-sage-600 focus:ring-2 focus:ring-sage-100"
           placeholder="At least 8 characters"
+          minLength={8}
+          aria-describedby={mode === "signup" ? "password-hint" : undefined}
           required
         />
+        {mode === "signup" ? (
+          <p id="password-hint" className="mt-2 text-sm text-espresso-500">
+            Use 8 or more characters with at least one letter and one number.
+          </p>
+        ) : null}
       </div>
 
       {error ? (

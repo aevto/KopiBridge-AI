@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { BarChart3, Clock3, FilePlus2, LogOut, Settings } from "lucide-react";
 import { BrandMark } from "@/components/BrandMark";
 import { createClient } from "@/lib/supabase/client";
@@ -24,11 +24,13 @@ export function AppShell({
   credits: CreditStatus;
 }) {
   const pathname = usePathname();
+  const router = useRouter();
 
   async function logout() {
     const supabase = createClient();
     await supabase.auth.signOut();
-    window.location.assign("/");
+    router.replace("/");
+    router.refresh();
   }
 
   return (

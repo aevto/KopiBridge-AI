@@ -1,0 +1,11 @@
+.env*
+!.env.example
+.git/
+.vercel/
+.next/
+node_modules/
+reports/
+AGENTS.md
+CLAUDE.md
+playwright-report/
+test-results/

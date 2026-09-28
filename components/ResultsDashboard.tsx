@@ -11,6 +11,7 @@ import {
   ListChecks,
   MessageSquareText,
   ShieldAlert,
+  Sparkles,
   Target,
   TimerReset,
 } from "lucide-react";
@@ -64,6 +65,10 @@ export function ResultsDashboard({
           {targetRole || "Target role"}
           {company ? ` | ${company}` : ""} | {reportDate}
         </p>
+        <p className="mt-1 text-sm">
+          Guidance:{" "}
+          {result.guidanceSource === "openai" ? "AI-refined" : "Local analysis"}
+        </p>
       </header>
 
       <div className="no-print flex flex-col gap-4 border-b border-espresso-100 pb-5 sm:flex-row sm:items-end sm:justify-between">
@@ -78,6 +83,12 @@ export function ResultsDashboard({
             Generated {reportDate}. Verify every recommendation before changing
             your resume.
           </p>
+          <span className="mt-3 inline-flex items-center gap-1.5 rounded-md border border-sage-100 bg-sage-50 px-2.5 py-1 text-xs font-semibold text-sage-700">
+            <Sparkles className="h-3.5 w-3.5" />
+            {result.guidanceSource === "openai"
+              ? "AI-refined, evidence-led guidance"
+              : "Local evidence-led guidance"}
+          </span>
         </div>
         <button
           type="button"

@@ -37,3 +37,15 @@ export const authSchema = z.object({
     .min(8, "Password must be at least 8 characters.")
     .max(128, "Password is too long."),
 });
+
+export const newPasswordSchema = z
+  .string()
+  .min(8, "Password must be at least 8 characters.")
+  .max(128, "Password is too long.")
+  .regex(/[A-Za-z]/, "Password must include at least one letter.")
+  .regex(/[0-9]/, "Password must include at least one number.");
+
+export const signupSchema = z.object({
+  email: z.email("Enter a valid email address."),
+  password: newPasswordSchema,
+});

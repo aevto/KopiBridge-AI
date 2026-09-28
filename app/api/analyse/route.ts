@@ -3,8 +3,16 @@ import { analyseResumeAgainstJob } from "@/lib/analyse";
 import { getSupabaseConfig } from "@/lib/supabase/config";
 import { analysisRequestSchema } from "@/lib/validation";
 import { createClient } from "@/lib/supabase/server";
+import {
+  enhanceAnalysisWithOpenAI,
+  isOpenAiGuidanceConfigured,
+  openAiErrorSummary,
+} from "@/lib/openai-guidance";
 
 const MAX_REQUEST_BYTES = 120_000;
+
+export const runtime = "nodejs";
+export const maxDuration = 60;
 
 export async function POST(request: Request) {
   if (!getSupabaseConfig()) {
@@ -112,10 +120,28 @@ export async function POST(request: Request) {
   const reservationId = reservation.reservation_id as string;
 
   try {
-    const report = analyseResumeAgainstJob(
+    const localReport = analyseResumeAgainstJob(
       input.resumeText,
       input.jobDescription,
     );
+    let report = localReport;
+
+    if (isOpenAiGuidanceConfigured()) {
+      try {
+        report = await enhanceAnalysisWithOpenAI({
+          report: localReport,
+          resumeText: input.resumeText,
+          jobDescription: input.jobDescription,
+          targetRole: input.targetRole,
+          company: input.company,
+        });
+      } catch (error) {
+        console.warn(
+          "OpenAI guidance unavailable; storing the complete local report instead.",
+          openAiErrorSummary(error),
+        );
+      }
+    }
     const { data: analysisId, error: storeError } = await supabase.rpc(
       "store_completed_analysis",
       {

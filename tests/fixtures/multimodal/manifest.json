@@ -1,0 +1,40 @@
+{
+  "origin": "Purpose-written synthetic resume and interview fixtures",
+  "images": [
+    {
+      "id": "clean",
+      "image": "resume-clean.png",
+      "reference": "EARLY CAREER SOFTWARE DEVELOPER\nEDUCATION\nBSc Computer Science, expected 2026\nSKILLS\nPython, JavaScript, React, SQL, Git\nPROJECTS\nBuilt a Flask API for a campus events application.\nAdded input validation and two unit tests with pytest.\nStored event records in SQLite and documented setup.\nCreated a React interface for searching campus events.\nEXPERIENCE\nPresented the project to a class of students.\nWorked with two classmates using Git branches.\nNo Docker, cloud deployment, or RAG project yet."
+    },
+    {
+      "id": "columns",
+      "image": "resume-columns.png",
+      "reference": "EARLY CAREER SOFTWARE DEVELOPER\nEDUCATION\nBSc Computer Science, expected 2026\nSKILLS\nPython, JavaScript, React, SQL, Git\nPROJECTS\nBuilt a Flask API for a campus events application.\nAdded input validation and two unit tests with pytest.\nStored event records in SQLite and documented setup.\nCreated a React interface for searching campus events.\nEXPERIENCE\nPresented the project to a class of students.\nWorked with two classmates using Git branches.\nNo Docker, cloud deployment, or RAG project yet."
+    },
+    {
+      "id": "low-contrast",
+      "image": "resume-low-contrast.png",
+      "reference": "EARLY CAREER SOFTWARE DEVELOPER\nEDUCATION\nBSc Computer Science, expected 2026\nSKILLS\nPython, JavaScript, React, SQL, Git\nPROJECTS\nBuilt a Flask API for a campus events application.\nAdded input validation and two unit tests with pytest.\nStored event records in SQLite and documented setup.\nCreated a React interface for searching campus events.\nEXPERIENCE\nPresented the project to a class of students.\nWorked with two classmates using Git branches.\nNo Docker, cloud deployment, or RAG project yet."
+    }
+  ],
+  "answers": [
+    {
+      "id": "specific",
+      "text": "I built a Flask API for campus events. I added input validation and two unit tests using pytest. The events were stored in SQLite. I worked with two classmates using Git branches. I have not deployed the project to a cloud platform yet. I would prepare the repository and test results to explain my contribution.",
+      "audio": "answer-specific.wav",
+      "origin": "Synthetic text spoken by macOS Samantha; not a human participant."
+    },
+    {
+      "id": "unsupported",
+      "text": "I built a Flask application for campus events. I would like to learn Docker and cloud deployment next. I have not used either in a completed project, so I cannot claim that experience. My next step is to containerise the application, test the local setup, and document the commands.",
+      "audio": "answer-unsupported.wav",
+      "origin": "Synthetic text spoken by macOS Samantha; not a human participant."
+    },
+    {
+      "id": "noisy",
+      "text": "I created a React interface for searching campus events. My role was building the search form and connecting it to our Flask API. I can show the repository and explain the request validation. We did not measure performance, so I would not claim a speed improvement.",
+      "audio": "answer-noisy.wav",
+      "origin": "Synthetic text spoken by macOS Samantha; not a human participant."
+    }
+  ]
+}

@@ -1,6 +1,5 @@
 import js from "@eslint/js";
 import nextPlugin from "@next/eslint-plugin-next";
-import reactPlugin from "eslint-plugin-react";
 import reactHooksPlugin from "eslint-plugin-react-hooks";
 import globals from "globals";
 import tseslint from "typescript-eslint";
@@ -11,6 +10,12 @@ const eslintConfig = [
   },
   js.configs.recommended,
   ...tseslint.configs.recommended,
+  {
+    files: ["scripts/**/*.mjs", "*.config.{js,mjs,ts}"],
+    languageOptions: {
+      globals: globals.node,
+    },
+  },
   {
     files: [
       "app/**/*.{ts,tsx}",
@@ -26,7 +31,6 @@ const eslintConfig = [
     },
     plugins: {
       "@next/next": nextPlugin,
-      react: reactPlugin,
       "react-hooks": reactHooksPlugin,
     },
     settings: {
@@ -37,7 +41,6 @@ const eslintConfig = [
     rules: {
       ...nextPlugin.configs["core-web-vitals"].rules,
       ...reactHooksPlugin.configs.recommended.rules,
-      "react/react-in-jsx-scope": "off",
     },
   },
 ];

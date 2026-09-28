@@ -321,6 +321,7 @@ export function analyseResumeAgainstJob(
 
   return {
     generatedAt: new Date().toISOString(),
+    guidanceSource: "local",
     overallScore,
     scoreLabel: scoreLabel(overallScore),
     scoreBreakdown,

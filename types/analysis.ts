@@ -115,6 +115,7 @@ export interface FinalRecommendation {
 
 export interface AnalysisResult {
   generatedAt: string;
+  guidanceSource: "local" | "openai";
   overallScore: number;
   scoreLabel: string;
   scoreBreakdown: ScoreBreakdownItem[];

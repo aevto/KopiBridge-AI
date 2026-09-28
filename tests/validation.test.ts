@@ -1,5 +1,9 @@
 import { describe, expect, it } from "vitest";
-import { analysisRequestSchema } from "@/lib/validation";
+import {
+  analysisRequestSchema,
+  authSchema,
+  signupSchema,
+} from "@/lib/validation";
 
 const validRequest = {
   resumeText:
@@ -33,5 +37,37 @@ describe("analysis request validation", () => {
         resumeText: "too short",
       }).success,
     ).toBe(false);
+  });
+});
+
+describe("authentication validation", () => {
+  it("requires letters and numbers when creating a password", () => {
+    expect(
+      signupSchema.safeParse({
+        email: "student@example.com",
+        password: "abcdefgh",
+      }).success,
+    ).toBe(false);
+    expect(
+      signupSchema.safeParse({
+        email: "student@example.com",
+        password: "12345678",
+      }).success,
+    ).toBe(false);
+    expect(
+      signupSchema.safeParse({
+        email: "student@example.com",
+        password: "KopiBridge2026",
+      }).success,
+    ).toBe(true);
+  });
+
+  it("keeps login compatible with an existing eight-character password", () => {
+    expect(
+      authSchema.safeParse({
+        email: "student@example.com",
+        password: "abcdefgh",
+      }).success,
+    ).toBe(true);
   });
 });

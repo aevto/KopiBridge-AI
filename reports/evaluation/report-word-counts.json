@@ -1,0 +1,13 @@
+{
+  "chapters": {
+    "Introduction": 717,
+    "Literature Review": 2036,
+    "Design": 1418,
+    "Implementation": 1982,
+    "Evaluation": 1967,
+    "Conclusion": 346
+  },
+  "total": 8466,
+  "maximum": 10500,
+  "figures": 34
+}

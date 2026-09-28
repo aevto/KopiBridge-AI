@@ -4,6 +4,9 @@ import { DeleteAnalysisButton } from "@/components/DeleteAnalysisButton";
 import { ResultsDashboard } from "@/components/ResultsDashboard";
 import { requireUser } from "@/lib/auth";
 import { getAnalysis } from "@/lib/history";
+import { createClient } from "@/lib/supabase/server";
+import { InterviewPractice } from "@/components/InterviewPractice";
+import type { InterviewPractice as Practice } from "@/lib/multimodal";
 
 export default async function ReportPage({
   params,
@@ -15,6 +18,14 @@ export default async function ReportPage({
   const user = await requireUser(`/history/${id}`);
   const analysis = await getAnalysis(user.id, id);
   if (!analysis) notFound();
+  const supabase = await createClient();
+  const { data: practice, error: practiceError } = await supabase
+    .from("interview_practice")
+    .select("id, question, transcript, feedback, source, model, created_at")
+    .eq("analysis_id", id)
+    .eq("user_id", user.id)
+    .order("created_at", { ascending: false })
+    .limit(6);
   return (
     <div>
       <div className="no-print mb-6 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
@@ -42,6 +53,12 @@ export default async function ReportPage({
         result={analysis.report}
         targetRole={analysis.target_role}
         company={analysis.company}
+      />
+      <InterviewPractice
+        analysisId={id}
+        questions={analysis.report.interviewPreparation.questions}
+        initialPractices={(practice ?? []) as Practice[]}
+        available={!practiceError}
       />
     </div>
   );
