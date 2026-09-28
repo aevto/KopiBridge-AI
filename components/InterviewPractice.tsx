@@ -401,7 +401,12 @@ export function InterviewPractice({
                     : "Saved preparation checklist"}
                 </p>
                 <span className="text-xs text-espresso-500">
-                  {new Date(practice.created_at).toLocaleDateString("en-SG")}
+                  {new Intl.DateTimeFormat("en-SG", {
+                    day: "2-digit",
+                    month: "2-digit",
+                    year: "numeric",
+                    timeZone: "Asia/Singapore",
+                  }).format(new Date(practice.created_at))}
                 </span>
               </div>
               <h3 className="mt-4 text-lg font-semibold leading-7 text-espresso-900">

@@ -54,6 +54,7 @@ export function ResultsDashboard({
   const reportDate = new Intl.DateTimeFormat("en-SG", {
     dateStyle: "medium",
     timeStyle: "short",
+    timeZone: "Asia/Singapore",
   }).format(new Date(result.generatedAt));
 
   return (

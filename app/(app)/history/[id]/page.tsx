@@ -41,6 +41,7 @@ export default async function ReportPage({
             {new Intl.DateTimeFormat("en-SG", {
               dateStyle: "medium",
               timeStyle: "short",
+              timeZone: "Asia/Singapore",
             }).format(new Date(analysis.created_at))}
           </p>
         </div>

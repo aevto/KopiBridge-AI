@@ -57,6 +57,7 @@ export function HistoryList({
                 {new Intl.DateTimeFormat("en-SG", {
                   dateStyle: "medium",
                   timeStyle: "short",
+                  timeZone: "Asia/Singapore",
                 }).format(new Date(item.created_at))}
               </p>
             ) : null}
